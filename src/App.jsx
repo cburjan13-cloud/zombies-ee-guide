@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
 // Supabase is optional — app works fully in solo mode without it.
 // To enable sessions: set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env
@@ -7,7 +8,6 @@ const _sbUrl = import.meta.env.VITE_SUPABASE_URL;
 const _sbKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 if (_sbUrl && _sbUrl.startsWith('https://') && _sbKey && _sbKey.length > 20) {
   try {
-    const { createClient } = await import('@supabase/supabase-js');
     supabase = createClient(_sbUrl, _sbKey);
   } catch (e) {
     console.warn('Supabase not configured — running in solo mode only.');
