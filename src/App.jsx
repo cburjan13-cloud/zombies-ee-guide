@@ -27,6 +27,7 @@ const MAPS_CONFIG = [
   { id: "shangrila", name: "SHANGRI-LA", subtitle: "Ancient Temple · Zombies Chronicles", eeName: "Stand-In", difficulty: 7, players: "2-4 REQUIRED", time: "1.5-2.5 hours", color: "#ff6b00", icon: "🏛️", tag: "REQUIRES 2 PLAYERS", tagline: "Trigger eclipse events and complete timed co-op rituals in a cursed ancient jungle temple." },
   { id: "moon", name: "MOON", subtitle: "Lunar Surface · Zombies Chronicles", eeName: "Cryogenic Slumber Party", difficulty: 6, players: "1-4 (2 recommended)", time: "1-2 hours", color: "#aaccff", icon: "🌕", tag: "INTERMEDIATE", tagline: "Hack Soviet equipment, survive low gravity, and complete Richtofen's soul transfer to the MPD." },
   { id: "origins", name: "ORIGINS", subtitle: "WWI France · Zombies Chronicles", eeName: "Little Lost Girl", difficulty: 9, players: "1-4 (2-3 ideal)", time: "2-4 hours", color: "#ffd600", icon: "⚙️", tag: "HARDEST", tagline: "Build and upgrade four elemental staffs, activate three giant robots, and complete an ancient ritual." },
+  { id: "dereisendrache", name: "DER EISENDRACHE", subtitle: "Austrian Castle · DLC 1 — Awakening", eeName: "My Brother's Keeper", difficulty: 7, players: "1-4 (Solo viable)", time: "2-3 hours", color: "#3399ff", icon: "🏰", tag: "BOW MASTERY", hasShield: true, tagline: "An ancient Austrian castle fortress. Build the Wrath of the Ancients bow, master its four elemental forms, and complete Richtofen's darkest ritual." },
 ];
 
 // ═══ SHADOWS DATA ═══
@@ -119,6 +120,27 @@ const SHADOWS_DATA = {
   mapEdges: [["junction","footlight"],["junction","canal"],["junction","waterfront"],["junction","rift"],["canal","jugg"],["footlight","speed"],["waterfront","stamin"],["junction","doubletap"],["junction","pap"]],
   mapPhoto: "https://static.wikia.nocookie.net/callofduty/images/thumb/Shadows_of_Evil_map.png",
   mapOrientation: { north: "Rift Portal (top)", south: "Spawn / Junction (center)", east: "Canal District (right)", west: "Footlight District (left)" },
+  shield: {
+    name: "Margwa Shield",
+    description: "A shield crafted from a Margwa's severed head. Blocks zombie attacks from behind. Charged melee launches a powerful energy blast. Highly recommended for the Rift sequence where enemies come from all directions.",
+    parts: [
+      { name: "Margwa Tentacle", locations: ["Footlight District — on or near the boxing ring floor or jazz club tables", "Near the Footlight Beast Mode altar on a surface"] },
+      { name: "Margwa Eye", locations: ["Canal District — near the waterway bridges or on a ledge near Juggernog", "On a crate near the canal docks"] },
+      { name: "Margwa Teeth", locations: ["Waterfront District — near the shipping crates or dock area workbench", "Near the Waterfront ritual altar on the floor"] },
+    ],
+    buildAt: "Any workbench in Junction or the four districts",
+    uses: [
+      "Hold the shield behind you to block zombie attacks from behind",
+      "Charged melee slams the Margwa head down for a massive area-of-effect hit",
+      "Absorbs several hits before breaking — find new parts to rebuild",
+    ],
+    tips: [
+      "Build the shield before entering the Rift — Margwas and Keepers attack from every angle inside",
+      "Parts spawn in one of 2-3 spots per district each game — check surfaces near the ritual altars",
+      "The charged melee one-shots standard zombies and deals heavy damage to Margwas",
+      "Shield breaks after absorbing enough damage — keep an eye on its health and rebuild when needed",
+    ],
+  },
   tips: [
     { icon: "👾", title: "Beast Mode Priority", body: "In Beast Mode: smash orange-cracked walls first to open shortcuts, then charge the blue portal mouth for your ritual, then charge Pack-a-Punch if needed. Your Beast time is limited — plan before transforming." },
     { icon: "🏃", title: "Margwa Priority", body: "When a Margwa spawns, drop everything and focus it. Shoot glowing open mouths only. Never let 2 Margwas be active simultaneously." },
@@ -569,6 +591,27 @@ const ORIGINS_DATA = {
   mapEdges: [["spawn","excavation"],["spawn","gen1"],["excavation","gen6"],["excavation","tank"],["excavation","crazy"],["gen6","robot_fire"],["tank","robot_ice"],["crazy","robot_light"],["excavation","jugg"],["spawn","phd"],["gen6","speed"],["tank","doubletap"],["excavation","mule"],["gen6","gen2"]],
   mapPhoto: "https://static.wikia.nocookie.net/callofduty/images/Origins_map_layout.png",
   mapOrientation: { north: "Lightning Robot / Crazy Place Portals (top)", south: "Spawn / Church (bottom)", east: "Tank Station / Ice Robot (right)", west: "Generator 6 / Fire Robot (left)" },
+  shield: {
+    name: "Zombie Shield",
+    description: "A makeshift shield built from zombie parts and scrap metal. Blocks attacks from behind and can be used for a powerful charged melee. Useful throughout Origins given the constant pressure from Panzer Soldats and large zombie hordes.",
+    parts: [
+      { name: "Shield Body (Wooden Plank)", locations: ["Near Generator 1 — leaning against equipment or crates in the trench area", "Spawn church area — on the floor near the door frame or pews"] },
+      { name: "Shield Handle (Metal Bar)", locations: ["Near Tank Station — on or beside the tank platform structure", "Trench network near Generator 2 — on a ledge or ground"] },
+      { name: "Shield Spine (Zombie Bone)", locations: ["Excavation site / Crazy Place entrance area — check the dig site surfaces", "Near Generator 6 on the west side — on a crate or the ground"] },
+    ],
+    buildAt: "Any workbench scattered around the map — near generators and the church",
+    uses: [
+      "Hold behind you to absorb zombie hits while navigating crowded areas",
+      "Charged melee delivers a powerful strike — useful for thinning zombie packs",
+      "Does NOT protect against Panzer Soldat attacks — stay mobile against them",
+    ],
+    tips: [
+      "Build early — Origins has one of the highest zombie pressure maps and the shield saves lives",
+      "Parts reset each game to one of their spawn spots — check all spots in each zone if you miss one",
+      "The charged melee in the Crazy Place is strong against Keepers",
+      "Shield breaks after heavy use — parts respawn so you can always rebuild",
+    ],
+  },
   tips: [
     { icon: "📋", title: "Assign Staffs Early", body: "With 2+ players, assign staffs before collecting starts. Prevents wasted trips and duplicate collecting." },
     { icon: "🤖", title: "Robots Are Friends", body: "Shoot every leg rune you see early — free perks add up. Learn paths in round 1. Never stand under a foot outside the purple circle." },
@@ -579,12 +622,205 @@ const ORIGINS_DATA = {
   ],
 };
 
+// ═══ DER EISENDRACHE DATA ═══
+const DEREISENDRACHE_DATA = {
+  overview: {
+    summary: "An ancient Austrian castle fortress commandeered by Group 935. The Primis crew must build and master the Wrath of the Ancients bow, feed three imprisoned dragons, activate the Death Ray, and complete a dark ritual to release Ultimis Dempsey and send rockets to the Moon.",
+    phases: [
+      { label: "SETUP", desc: "Turn on 3 power switches, feed all 3 dragons, and build the Wrath of the Ancients bow." },
+      { label: "BOW UPGRADES", desc: "Upgrade at least one bow to an elemental form (solo: 1 bow, 4 players: all 4 upgraded)." },
+      { label: "DEATH RAY", desc: "Activate the Death Ray near the pyramid and use it to complete two key objectives." },
+      { label: "RITUAL", desc: "Interact with 3 teleporters with the Summoning Key, complete the Memory Game, and finish the final ritual." },
+    ],
+    mustHave: [
+      "Juggernog — lower courtyard near the base of the clock tower steps, buy immediately",
+      "Wrath of the Ancients bow — required for the Easter egg, build from 3 parts",
+      "At least one upgraded elemental bow — the EE uses the upgraded bow for key steps",
+      "Ragnarok DG-4 (Gravity Spikes) — craftable wonder weapon, excellent for Panzer Soldat",
+      "Activate the Death Ray at least once before Step 4 — it's required for the ritual steps",
+    ],
+  },
+  steps: [
+    { phase: "SETUP", icon: "⚡", title: "Turn On the Power — 3 Switches", color: "#3399ff",
+      location: "Three power switches: Clock Tower Room, Undercroft (basement), and the Keep (upper battlements)",
+      locationDetail: "From spawn (landing pad), head down into the castle. The three power switches are spread across three floors: one in the room adjacent to the Clock Tower, one in the Undercroft (the underground cave below the castle), and one in the Keep area up the battlements stairs. All three must be activated.",
+      steps: ["Switch 1 — Clock Tower Room: from the landing pad, descend the stairs and find the room adjacent to the large clock. Pull the lever.", "Switch 2 — Undercroft: navigate down into the underground cave system beneath the castle. The lever is on the cave wall near the pyramid.", "Switch 3 — Keep: ascend to the upper battlements/Keep area. Lever is on the wall near the battlements overlook.", "After all 3, full power comes on. Wunderspheres (green launchers) activate — use them to travel around the map quickly."],
+      tip: "Wunderspheres are your best friend for traversal. Learn the two routes: one goes lower-to-upper, one goes to the Clock Tower area.", warning: null },
+    { phase: "SETUP", icon: "🐉", title: "Feed All 3 Dragon Obelisks", color: "#ff6b00",
+      location: "One dragon obelisk in each zone: Undercroft, Clock Tower area, and the Keep/Battlements",
+      locationDetail: "Three dragon head obelisks are locked behind barriers early in the game, each in a different zone. After opening the area, kill zombies in close proximity to each dragon's head until it's fully fed — the dragon glows and roars when satisfied. Each dragon requires approximately 20-30 zombie kills nearby.",
+      steps: ["Open the gate to each dragon's zone by spending points on the barrier.", "Stand near the dragon head and kill zombies close to it. The dragon's mouth will begin to glow as it feeds.", "Dragon 1 — Undercroft cave, near the pyramid structure.", "Dragon 2 — Clock Tower courtyard area, near the large clock.", "Dragon 3 — Keep/Battlements upper area.", "When a dragon is fully fed, it breathes a large burst of fire and rewards a free perk."],
+      tip: "You get a FREE PERK from each fed dragon. Feed all 3 before spending points on perks — saves thousands of points.", warning: "Do not try to feed dragons during high rounds. Feed them in rounds 3-6 when zombie counts are manageable." },
+    { phase: "SETUP", icon: "🏹", title: "Build the Wrath of the Ancients Bow", color: "#3399ff",
+      location: "3 arrow parts found across the castle — assemble at the pyramid in the Undercroft",
+      locationDetail: "The Wrath of the Ancients is Der Eisendrache's base wonder weapon bow. Three parts (Arrow Head, Arrow Shaft, Braided Wire) each have 2-3 spawn locations. Once all 3 are collected, bring them to the glowing pyramid altar in the Undercroft to assemble.",
+      steps: ["Arrow Head: check the Undercroft cave near the pyramid — on a stone shelf, or on a table near the rocket area.", "Arrow Shaft: check the main courtyard near the clock tower base, or near the Keep battlements stairs.", "Braided Wire: check near the spawn landing pad area, or in the upper Keep room near the window.", "Once you have all 3 parts, go to the pyramid altar in the Undercroft and hold Square/X to build.", "The bow appears on the altar — pick it up."],
+      tip: "Parts glow faintly. Walk through each zone systematically — they are not hidden, just spread out.", warning: "Only one player can build the bow — but in multiplayer, all players need their own bow. Each player must collect and build separately." },
+    { phase: "BOW UPGRADES", icon: "⬆️", title: "Upgrade the Bow to Elemental Form", color: "#ffd600",
+      location: "Each upgrade has unique steps around the castle — see Weapons tab for full detail on each of the 4 bows",
+      locationDetail: "The Wrath of the Ancients can be upgraded into one of four elemental bows. Solo: upgrade one bow. Multiplayer: each player upgrades their own bow. For the EE you need at least one upgraded bow per player. The upgrades are multi-step processes involving finding symbols, shooting targets, and charging urns by killing zombies.",
+      steps: ["Choose one of the 4 elemental bow upgrades: Storm (lightning), Wolf (spirit), Void (shadow), or Fire.", "Each upgrade follows a pattern: find 3 glowing targets/symbols → shoot them with WotA → complete an undercroft puzzle → kill zombies near urns to charge them → collect the upgraded bow.", "Detailed steps for each bow are in the WEAPONS tab.", "One upgraded bow unlocks the next EE steps. Getting all 4 earns the 'Arms of the Triumvirate' achievement.", "Pack-a-Punch the upgraded bow when done — dramatically increases damage."],
+      tip: "The Wolf Bow is considered easiest to upgrade and is great for regular gameplay. The Storm Bow has the most satisfying charged shot for crowd control.", warning: "Do not skip this step. The upgraded bow is used directly in the EE ritual steps." },
+    { phase: "DEATH RAY", icon: "☠️", title: "Activate the Death Ray", color: "#ff3a3a",
+      location: "Death Ray terminal — next to the pyramid in the Undercroft",
+      locationDetail: "The Death Ray is a powerful energy weapon mounted near the pyramid in the Undercroft. Activating it fires at a target and is required for two specific EE objectives. You can activate it multiple times by paying points at the terminal.",
+      steps: ["Go to the pyramid area in the Undercroft.", "Find the Death Ray activation terminal on the wall — hold Square/X to activate (costs points).", "The Death Ray charges and fires — a beam shoots across the room.", "For the EE, the Death Ray must be used on Keeper skulls (glowing enemy skulls that appear near the pyramid during later steps — shoot them into the Death Ray's path).", "The Death Ray is also required to craft the Ragnarok DG-4 (see Weapons tab)."],
+      tip: "Activate the Death Ray early in the game (round 5+) even if not on an EE step — it unlocks Ragnarok DG-4 parts and counts toward the EE progression.", warning: null },
+    { phase: "RITUAL", icon: "🔮", title: "Summon Keepers and Use the Death Ray", color: "#9b00ff",
+      location: "Pyramid area in the Undercroft",
+      locationDetail: "With the upgraded bow, interact with the pyramid to summon Keeper enemies. Shoot the Keeper skulls/projectiles into the beam of the Death Ray when it fires. This sequence must be completed to progress the ritual.",
+      steps: ["With your upgraded bow equipped, interact with the pyramid in the Undercroft.", "Keeper enemies spawn — these are powerful hooded entities.", "When the Death Ray activates, shoot Keeper projectile/skulls so they travel through the Death Ray beam.", "Repeat until the pyramid ritual phase is complete — audio cue signals progress.", "Survive the Keeper wave."],
+      tip: "Keep Juggernog active for this step. Keepers have ranged attacks. Stay mobile and keep the pyramid in sight.", warning: "Keepers take significant damage to kill. Pack-a-Punch weapons and the Ragnarok DG-4 are highly recommended." },
+    { phase: "RITUAL", icon: "📡", title: "Interact with 3 Teleporters with the Summoning Key", color: "#9b00ff",
+      location: "Three teleporters spread around the castle — one per major zone",
+      locationDetail: "After the pyramid sequence, the Summoning Key activates. Carry it to three teleporter pads around the castle and interact at each. The teleporters glow and are fairly visible — one in the Undercroft, one near the Clock Tower, and one in the Keep.",
+      steps: ["The Summoning Key appears after the pyramid ritual — it floats and follows you automatically.", "Find and interact with Teleporter 1 in the Undercroft zone.", "Find and interact with Teleporter 2 near the Clock Tower courtyard.", "Find and interact with Teleporter 3 in the Keep/Battlements zone.", "Each interaction plays an audio cue from Richtofen. Complete all 3 without dying."],
+      tip: "These teleporters are large glowing pads on the floor. Use Wunderspheres to travel between zones quickly.", warning: "Do not go down (get downed) while holding the Summoning Key during this phase. Make sure you are stocked on ammo and health." },
+    { phase: "RITUAL", icon: "🧩", title: "Complete the Memory Game at the Pyramid", color: "#3399ff",
+      location: "The pyramid in the Undercroft — glowing panels on its faces",
+      locationDetail: "The pyramid's four faces light up with glowing symbols in a sequence. You must shoot the panels in the correct order using your bow — like a zombie Simon Says. The sequence randomizes each time you fail, but the pattern is shown once before you input.",
+      steps: ["Return to the pyramid in the Undercroft. The panels on its faces are now glowing.", "Watch the panel sequence carefully — each face lights up in order.", "Shoot the faces with your upgraded bow in the same order they lit up.", "A correct sequence plays a success tone. Incorrect = round resets.", "Complete 3-4 rounds of the memory game successfully.", "Final success triggers a major audio cue from Richtofen."],
+      tip: "In multiplayer, have one player focus entirely on the memory game while others hold the zombie horde back. Call out the pattern verbally.", warning: "The memory game sequence gets longer each round. Pay close attention — mistakes reset the round." },
+    { phase: "COMPLETION", icon: "✅", title: "Final Ritual and Completion", color: "#00ff88",
+      location: "Clock Tower area — interact with the terminal outside the Clock Tower, then the pyramid for the finale",
+      locationDetail: "After the Memory Game, carry the Summoning Key to the terminal outside the Clock Tower (Radio Room). The Key floats into the terminal and triggers the rocket launch cutscene — Der Eisendrache's rockets fire toward the Moon. A final enemy wave occurs before the ending plays.",
+      steps: ["With the Summoning Key after completing the Memory Game, navigate to the terminal outside the Clock Tower (Radio Room on some guides).", "Interact with the terminal — the Summoning Key floats in and begins sparking with electricity.", "All zombies despawn for the cutscene.", "Rockets launch toward the Moon — My Brother's Keeper ending cutscene plays.", "Ultimis Dempsey's fate is decided. Richtofen's plan advances."],
+      tip: "Stock up and stay safe before this final interaction. Once you interact with the terminal the EE is complete.", warning: null },
+  ],
+  weapons: [
+    { name: "Wrath of the Ancients", type: "CRAFTABLE", icon: "🏹", color: "#3399ff",
+      description: "The base wonder weapon bow of Der Eisendrache. Fires magical arrows that deal significant damage. Required base for all 4 elemental upgrades. Accurate, silent, and deadly.",
+      acquisition: "Build from 3 parts (Arrow Head, Arrow Shaft, Braided Wire) found around the castle. Assemble at the pyramid altar in the Undercroft.",
+      parts: [
+        { name: "Arrow Head", location: "Undercroft — on a stone shelf near the pyramid, or on a table near the rocket area in the lower castle." },
+        { name: "Arrow Shaft", location: "Main courtyard near the Clock Tower base, or near the Keep battlements stairs on the ground." },
+        { name: "Braided Wire", location: "Near the spawn/landing pad area, or in the upper Keep room near the window looking out." },
+      ],
+      upgradeNote: "Cannot be Pack-a-Punched in base form. Upgrade to an elemental bow first, then PaP the upgraded version.",
+      eeRelevance: "Required for all EE steps. Without it you cannot upgrade, complete the ritual, or damage the Keepers correctly." },
+    { name: "Storm Bow (Kreema'ahm la Ahmahm)", type: "BOW UPGRADE — LIGHTNING", icon: "⚡", color: "#00e5ff",
+      description: "Fires a ball of electricity that lingers, shocking and chaining to nearby zombies. Charged shot releases a swirling thunderstorm at the impact point that sucks in and electrocutes zombies. Outstanding for mid-size hordes.",
+      acquisition: "Upgrade the Wrath of the Ancients via the Storm upgrade questline.",
+      parts: [
+        { name: "Step 1 — Find 3 Storm Urns", location: "Three small storm-marked urns are hidden around the map. Shoot each glowing urn with the Wrath of the Ancients — they're on ledges and surfaces in the Undercroft, Clock Tower area, and Keep. They emit a faint blue glow." },
+        { name: "Step 2 — Fill the Storm Jars", location: "Go to the Undercroft near the pyramid. Three storm jars appear in a triangle pattern. Kill zombies near the jars to fill them with souls. When all three glow bright blue, the jars are fully charged." },
+        { name: "Step 3 — Shoot the Floating Orb", location: "A glowing electrical orb appears floating in the Undercroft. Shoot it precisely with the Wrath of the Ancients. It moves slowly — lead your shot. One clean hit activates the next phase." },
+        { name: "Step 4 — Collect from the Pyramid", location: "Return to the pyramid altar in the Undercroft. The Storm Bow materializes on the altar — hold Square/X to collect it." },
+      ],
+      upgradeNote: "Pack-a-Punch after acquiring. PaP'd Storm Bow clears entire rooms with the charged shot.",
+      eeRelevance: "One of 4 valid bows for the EE ritual. Many players prefer this one for its crowd control charged shot." },
+    { name: "Wolf Bow (Kreeholo lu Kreemasaleet)", type: "BOW UPGRADE — SPIRIT/WOLF", icon: "🐺", color: "#ff6b00",
+      description: "Fires a shot that slows all zombies in a blast radius. Charged shot causes spectral wolves to leap from the impact point, dealing damage and slowing anything they hit. Excellent for training hordes. Often considered the easiest upgrade to complete.",
+      acquisition: "Upgrade the Wrath of the Ancients via the Wolf upgrade questline.",
+      parts: [
+        { name: "Step 1 — Shoot 3 Wolf Symbols", location: "Three wolf paw-print/symbol targets are painted on walls around the castle — one in the Undercroft, one near the Clock Tower courtyard, one in the Keep. They glow orange-red when the bow is equipped. Shoot each with the WotA to activate them." },
+        { name: "Step 2 — Crazy Place Wolf Targets", location: "Enter the Crazy Place (via the Wundersphere that leads to the alternate dimension — a dark shadow version of the castle). Inside, 3 wolf-spirit targets appear on the walls and light up in sequence. Shoot them in the order they light up before they fade." },
+        { name: "Step 3 — Fill Wolf Fire Urns", location: "In the Crazy Place, three fire urns appear near a wolf altar. Kill zombies near them to fill the urns with wolf souls — they glow orange when charged. All 3 must be filled before leaving." },
+        { name: "Step 4 — Collect from the Wolf Altar", location: "The Wolf Bow materializes on the altar in the Crazy Place — hold Square/X to collect. Or it may appear at the main pyramid — check both." },
+      ],
+      upgradeNote: "Pack-a-Punch after acquiring. The PaP'd charged shot becomes a massive wolf pack charge that covers enormous distance.",
+      eeRelevance: "Widely considered the easiest upgrade and best for general gameplay. Great starting choice if this is your first time." },
+    { name: "Void Bow (Kreegakaleet lu Gosata'ahm)", type: "BOW UPGRADE — SHADOW/VOID", icon: "💀", color: "#9b00ff",
+      description: "Normal shot spawns a single skull that kills 2-3 zombies before vanishing. Charged shot opens a dark portal that launches many skulls in a wide radius, stalling and eating nearby zombies for several seconds. Excellent for area denial.",
+      acquisition: "Upgrade the Wrath of the Ancients via the Void upgrade questline.",
+      parts: [
+        { name: "Step 1 — Find 3 Void Symbols", location: "Three void/shadow symbols are marked on walls around the castle — look for dark skull-like marks in the Undercroft, near the rocket area, and near the Keep. Shoot each with the Wrath of the Ancients to activate them." },
+        { name: "Step 2 — Shoot the Glowing Panels in Order", location: "In the Undercroft, three glowing void panels appear on the walls. They light up briefly in a random sequence — watch carefully and shoot them in the same order (a Memory Game mechanic). Wrong order resets the sequence." },
+        { name: "Step 3 — Fill the Void Urns", location: "Three shadow urns appear near the void altar (Undercroft area). Kill zombies nearby to fill them. The urns pulse purple as they fill. Kill 8-10 zombies near each urn." },
+        { name: "Step 4 — Collect from the Altar", location: "The Void Bow materializes on the void altar in the Undercroft. Hold Square/X to collect it." },
+      ],
+      upgradeNote: "Pack-a-Punch into the Kreegakaleet lu Gosata'ahm PaP. The portal charged shot becomes devastating at high rounds — stops full hordes cold.",
+      eeRelevance: "Strong tactical choice for the EE — the portal charged shot is perfect for controlling the Keeper fight near the pyramid." },
+    { name: "Fire Bow (Kreeaho'ahm nal Ahmhogaroc)", type: "BOW UPGRADE — FIRE/RUNE", icon: "🔥", color: "#ff3a3a",
+      description: "Normal shot creates a small burst of lava that burns zombies over time. Charged shot fires a massive rune prison that encases multiple zombies in a fiery cage, burning them to death. One of the highest sustained damage bows.",
+      acquisition: "Upgrade the Wrath of the Ancients via the Fire upgrade questline.",
+      parts: [
+        { name: "Step 1 — Find 3 Fire Rune Symbols", location: "Three fire rune symbols are inscribed on castle walls — look for orange glowing marks near the Keep upper area, the Clock Tower courtyard walls, and the upper landing near spawn. Shoot each with the WotA." },
+        { name: "Step 2 — Crazy Place Fire Targets", location: "Enter the Crazy Place. Three fire-circle targets appear on the ground — they glow orange and cycle in an order. Shoot each fire circle target with the WotA as it glows. Timing matters — too slow and the sequence resets." },
+        { name: "Step 3 — Fill Fire Urns", location: "Three fire urns appear near the fire altar in the Crazy Place or Undercroft. Kill zombies near them — they are filled with kill-souls. The urns glow bright orange when fully charged." },
+        { name: "Step 4 — Collect from the Altar", location: "The Fire Bow materializes on the fire altar. Hold Square/X to pick it up." },
+      ],
+      upgradeNote: "Pack-a-Punch into the Kreeaho'ahm nal Ahmhogaroc PaP. The rune prison charged shot becomes a massive multi-trap that kills entire waves.",
+      eeRelevance: "Excellent in the final ritual wave — the rune prison traps clusters of Keepers, giving you time to reposition." },
+    { name: "Ragnarok DG-4 (Gravity Spikes)", type: "CRAFTABLE", icon: "⚡", color: "#ffd600",
+      description: "A wonder weapon that slams gravity spikes into the ground, creating a zone that pulls in and crushes zombies. Devastating against the Panzer Soldat. Three parts to build.",
+      acquisition: "Build from 3 parts found after activating the Death Ray at least once. Parts appear in the Undercroft and castle areas.",
+      parts: [
+        { name: "DG-4 Head", location: "Appears in the Undercroft near the Death Ray after it has been activated. Check the floor near the terminal." },
+        { name: "DG-4 Body", location: "In the castle battlements/Keep area — check near the artillery or equipment crates after Death Ray activation." },
+        { name: "DG-4 Base", location: "Near the landing pad/spawn area or the Clock Tower room — on the floor or a surface after Death Ray fires." },
+      ],
+      upgradeNote: "Pack-a-Punch into the Ragnarok DG-4 Supreme. Gravity pull radius doubles and damage becomes extreme.",
+      eeRelevance: "Not required for the EE but near-essential for surviving the Keeper fights and Panzer Soldat encounters during the ritual steps." },
+  ],
+  enemies: [
+    { name: "Panzer Soldat", icon: "🦾", threat: 5, color: "#ff3a3a",
+      description: "A heavily armored zombie in a full metal suit. Equipped with a flamethrower on one arm and a claw grapple on the other. First spawns around round 8-10 and returns every few rounds. Very high health.",
+      identify: "Tall metal suit, bright red eye, distinctive mechanical sound and jet engine noise when spawning. Much slower than standard zombies but takes a full magazine of most guns.",
+      handle: "Ragnarok DG-4 to pull it in, then unload into its face. Shoot the exposed glass eye for bonus damage. Never let its claw grab you — it pins you and drains your health rapidly. Never stand still — constantly strafe.",
+      eeRelevance: "Spawns regularly throughout the EE. Will interrupt ritual steps if not handled. Kill on sight as the top priority every time one appears." },
+    { name: "Keeper", icon: "👁️", threat: 4, color: "#9b00ff",
+      description: "Powerful hooded supernatural entities summoned during the EE ritual steps near the pyramid. High health, ranged energy projectile attacks, and resistant to most damage types. Only appear during specific EE phases.",
+      identify: "Tall robed figures with glowing eyes. Only appear near the pyramid during the Keeper fight EE step. Emit a purple aura and launch energy balls.",
+      handle: "Pack-a-Punched weapons. Upgraded and PaP'd bows deal heavy damage. Ragnarok DG-4 pulls them into a cluster you can then bomb. Stay mobile and use the Undercroft pillars for cover.",
+      eeRelevance: "A required encounter during the pyramid ritual phase. Expect 2-4 simultaneously. Failure to handle them means restarting the ritual step." },
+  ],
+  mapNodes: [
+    { id: "spawn", x: 50, y: 8, label: "LANDING PAD / SPAWN", color: "#00ff88", type: "area", desc: "NORTH — Starting area at the top of the castle. Wundersphere launch point here for fast travel." },
+    { id: "keep", x: 75, y: 22, label: "THE KEEP", color: "#3399ff", type: "area", desc: "NORTHEAST — Upper battlements area. Power Switch 3, Dragon 3, and Fire Rune symbols here. Pack-a-Punch machine is in this area." },
+    { id: "clock", x: 50, y: 38, label: "CLOCK TOWER AREA", color: "#ffd600", type: "area", desc: "CENTER — Large courtyard with the main clock tower. Dragon 2 is here. EE: final ritual terminal outside the Clock Tower." },
+    { id: "undercroft", x: 28, y: 62, label: "UNDERCROFT", color: "#9b00ff", type: "key", desc: "SOUTHWEST — Underground cave below the castle. Pyramid, Death Ray, Dragon 1 all here. Most EE steps happen here." },
+    { id: "pyramid", x: 28, y: 72, label: "PYRAMID / DEATH RAY", color: "#ff3a3a", type: "key", desc: "UNDERCROFT — The glowing pyramid is the bow build station and EE ritual focus. Death Ray terminal is right next to it." },
+    { id: "crazyplace", x: 12, y: 50, label: "CRAZY PLACE (PORTAL)", color: "#ff00aa", type: "key", desc: "WEST — Enter via Wundersphere on the west side. Shadow version of the castle. Required for Wolf Bow and Fire Bow upgrades." },
+    { id: "jugg", x: 52, y: 48, label: "JUGGERNOG", color: "#ff3a3a", type: "perk", fixed: true, desc: "FIXED — Lower courtyard near the base of the Clock Tower steps. Buy this first." },
+    { id: "speed", x: 65, y: 32, label: "SPEED COLA", color: "#00e5ff", type: "perk", fixed: true, desc: "FIXED — Keep area, near the top battlements. Faster reloads." },
+    { id: "quick", x: 38, y: 52, label: "QUICK REVIVE", color: "#00ff88", type: "perk", fixed: true, desc: "FIXED — Near the spawn/landing pad area or upper courtyard." },
+    { id: "stamin", x: 42, y: 68, label: "STAMIN-UP", color: "#00ff88", type: "perk", fixed: true, desc: "FIXED — In the lower castle area near the Undercroft entrance." },
+    { id: "pap", x: 72, y: 18, label: "PACK-A-PUNCH", color: "#ffd600", type: "key", desc: "Keep area — upper battlements. Always available after power is on, no activation required." },
+    { id: "box1", x: 55, y: 58, label: "BOX SPAWN", color: "#888", type: "box", desc: "Possible Mystery Box — lower castle near the Undercroft entrance path." },
+    { id: "box2", x: 35, y: 28, label: "BOX SPAWN", color: "#888", type: "box", desc: "Possible Mystery Box — Clock Tower courtyard area." },
+  ],
+  mapEdges: [["spawn","keep"],["spawn","clock"],["clock","undercroft"],["undercroft","pyramid"],["undercroft","crazyplace"],["keep","pap"],["clock","jugg"],["keep","speed"],["undercroft","stamin"],["spawn","quick"],["clock","box2"],["undercroft","box1"]],
+  mapPhoto: "https://static.wikia.nocookie.net/callofduty/images/Der_Eisendrache_map_layout.png",
+  mapOrientation: { north: "Spawn / Landing Pad (top)", south: "Undercroft / Pyramid (bottom)", east: "The Keep / Pack-a-Punch (right)", west: "Crazy Place Portal (left)" },
+  tips: [
+    { icon: "🐉", title: "Free Perks From Dragons", body: "Each fed dragon gives a free perk. Feed all 3 dragons (rounds 3-6) before spending a single point on perks. That's potentially 3 free perks worth ~7,500 points." },
+    { icon: "🏹", title: "Upgrade Bow Before EE Steps", body: "Fully upgrade at least one bow and Pack-a-Punch it before starting any EE ritual steps. Keeper fights require heavy damage output." },
+    { icon: "🦾", title: "Panzer Priority", body: "The moment you hear the Panzer Soldat's jet engine sound, stop everything and focus it. Ragnarok DG-4 pulls it in, then unload into the glass eye. Never let it grab you." },
+    { icon: "⚡", title: "Use Wunderspheres", body: "The green launch pads (Wunderspheres) are the fastest traversal in the map. Learn both routes — they save minutes of running during timed EE steps." },
+    { icon: "🎯", title: "Perk Priority", body: "Juggernog first. Quick Revive second (solo — self-revive). Speed Cola third. Stamin-Up is optional. Dragons often give you the first one or two for free." },
+    { icon: "🔮", title: "Memory Game Tips", body: "For the pyramid memory game, have one player call out each panel position out loud (North, South, East, West) as they light up. Then both players confirm the sequence before shooting." },
+  ],
+  shield: {
+    name: "Zombie Shield",
+    description: "A makeshift shield built from castle scrap and zombie parts. Blocks attacks from behind and delivers a powerful melee slam. Essential during the Panzer Soldat fights and the Keeper encounters in the ritual steps.",
+    parts: [
+      { name: "Shield Frame (Wooden Door)", locations: ["Near the Clock Tower courtyard — leaning against a wall or on the ground near the clock base", "Near the landing pad/spawn area by the equipment crates"] },
+      { name: "Shield Handle (Metal Pipe)", locations: ["In the Keep area — near the battlements wall or beside an artillery piece", "Lower castle path near the Stamin-Up machine"] },
+      { name: "Shield Bracket (Skull Mount)", locations: ["In the Undercroft — near the pyramid on the cave floor, or near the Death Ray terminal", "Near the Crazy Place Wundersphere entrance on the west side"] },
+    ],
+    buildAt: "Any workbench around the castle — there are workbenches near the Clock Tower, Keep, and Undercroft",
+    uses: [
+      "Hold behind you to absorb zombie hits — critical when focused on ritual steps near the pyramid",
+      "Charged melee slams the shield down for a powerful area hit — useful against Keeper clusters",
+      "Does NOT block Panzer Soldat flamethrower — stay mobile against Panzers regardless",
+    ],
+    tips: [
+      "Build the shield as early as possible — it's especially valuable during the Keeper fight at the pyramid",
+      "The charged melee deals surprising damage to Keepers — use it when they cluster together",
+      "Parts rotate between 2-3 possible spawns each game — check both locations if one spot is empty",
+      "Shield breaks after absorbing enough damage — parts respawn so you can always rebuild",
+    ],
+  },
+};
+
 const ALL_MAP_DATA = {
   shadows: SHADOWS_DATA,
   ascension: ASCENSION_DATA,
   shangrila: SHANGRILA_DATA,
   moon: MOON_DATA,
   origins: ORIGINS_DATA,
+  dereisendrache: DEREISENDRACHE_DATA,
 };
 
 // ═══ SESSION UTILITIES ═══
@@ -787,6 +1023,13 @@ function SessionLobby({ onSession, onSolo, mapsConfig }) {
 
 // ═══ SESSION HEADER BAR ═══
 function SessionHeaderBar({ session, participants, mapName, mapColor, onBack }) {
+  const [copied, setCopied] = useState(false);
+  function copyCode() {
+    navigator.clipboard.writeText(session.code).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
   if (!session || session === 'solo') return (
     <div style={{ height:50, display:'flex', alignItems:'center', background:'#0c0f1a', borderBottom:'1px solid #1e2235', padding:'0 28px', flexShrink:0 }}>
       <button onClick={onBack} style={{ background:'transparent', border:'none', color:'#5a6280', cursor:'pointer', fontSize:11, letterSpacing:2, fontFamily:"inherit", marginRight:16 }}>← MAPS</button>
@@ -797,7 +1040,11 @@ function SessionHeaderBar({ session, participants, mapName, mapColor, onBack }) 
       <button onClick={onBack} style={{ background:'none', border:'none', color:'#5a6280', cursor:'pointer', fontFamily:"'Courier New',monospace", fontSize:'12px', letterSpacing:'1px' }}>← MAPS</button>
       <div style={{ textAlign:'center', flex:1, padding:'0 16px' }}>
         <div style={{ fontSize:'13px', color:'#e0e0e0', letterSpacing:'1px', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{session.name}</div>
-        <div style={{ fontSize:'11px', color:'#4a5580', letterSpacing:'3px', marginTop:'2px' }}>[{session.code}]</div>
+        <button onClick={copyCode} style={{ background:'none', border:'none', cursor:'pointer', fontFamily:"'Courier New',monospace", padding:0 }}>
+          <span style={{ fontSize:'11px', color: copied ? '#00ff88' : '#4a5580', letterSpacing:'3px' }}>
+            {copied ? '✓ COPIED!' : `[${session.code}] 📋`}
+          </span>
+        </button>
       </div>
       <div style={{ display:'flex', gap:'6px', alignItems:'center' }}>
         {participants.map((p, i) => (
@@ -882,45 +1129,46 @@ function WhatsNextCard({ steps, completions, mapColor }) {
 // ═══ OVERVIEW TAB ═══
 function OverviewTab({ data, meta, completions = [], session }) {
   const showWhatsNext = session && session !== 'solo';
+  const isMobile = window.innerWidth < 600;
   return (
-    <div style={{ padding: "32px 40px", maxWidth: 1100, margin: "0 auto" }}>
+    <div style={{ padding: isMobile ? "16px" : "32px 40px", maxWidth: 1100, margin: "0 auto" }}>
       {showWhatsNext && <WhatsNextCard steps={data.steps} completions={completions} mapColor={meta.color} />}
-      <div style={{ background: "linear-gradient(135deg,#0a1628 0%,#0d0a1e 60%,#1a0a0a 100%)", border: `1px solid #1e2235`, borderTop: `3px solid ${meta.color}`, borderRadius: 12, padding: "36px 40px", marginBottom: 24, position: "relative", overflow: "hidden" }}>
+      <div style={{ background: "linear-gradient(135deg,#0a1628 0%,#0d0a1e 60%,#1a0a0a 100%)", border: `1px solid #1e2235`, borderTop: `3px solid ${meta.color}`, borderRadius: 12, padding: isMobile ? "20px" : "36px 40px", marginBottom: 20, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: meta.color + "08", pointerEvents: "none" }} />
-        <div style={{ fontSize: 10, letterSpacing: 5, color: meta.color, marginBottom: 6 }}>{meta.subtitle}</div>
-        <h1 style={{ margin: "0 0 4px", fontSize: 38, color: "#fff", letterSpacing: 2 }}>{meta.name}</h1>
-        <div style={{ fontSize: 15, color: "#5a6280", marginBottom: 24, letterSpacing: 2 }}>Easter Egg: {meta.eeName}</div>
-        <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
+        <div style={{ fontSize: 10, letterSpacing: 4, color: meta.color, marginBottom: 6 }}>{meta.subtitle}</div>
+        <h1 style={{ margin: "0 0 4px", fontSize: isMobile ? 24 : 38, color: "#fff", letterSpacing: 2 }}>{meta.name}</h1>
+        <div style={{ fontSize: isMobile ? 12 : 15, color: "#5a6280", marginBottom: 20, letterSpacing: 1 }}>Easter Egg: {meta.eeName}</div>
+        <div style={{ display: "flex", gap: isMobile ? 16 : 32, flexWrap: "wrap" }}>
           <div><div style={{ fontSize: 9, color: "#5a6280", letterSpacing: 3, marginBottom: 6 }}>DIFFICULTY</div><DifficultyBar rating={meta.difficulty} color={meta.color} /></div>
-          <div><div style={{ fontSize: 9, color: "#5a6280", letterSpacing: 3, marginBottom: 6 }}>PLAYERS</div><div style={{ color: "#00ff88", fontSize: 13 }}>👥 {meta.players}</div></div>
-          <div><div style={{ fontSize: 9, color: "#5a6280", letterSpacing: 3, marginBottom: 6 }}>EST. TIME</div><div style={{ color: "#e0e6f0", fontSize: 13 }}>⏱ {meta.time}</div></div>
+          <div><div style={{ fontSize: 9, color: "#5a6280", letterSpacing: 3, marginBottom: 6 }}>PLAYERS</div><div style={{ color: "#00ff88", fontSize: 12 }}>👥 {meta.players}</div></div>
+          <div><div style={{ fontSize: 9, color: "#5a6280", letterSpacing: 3, marginBottom: 6 }}>EST. TIME</div><div style={{ color: "#e0e6f0", fontSize: 12 }}>⏱ {meta.time}</div></div>
         </div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 20 }}>
-        <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 10, padding: "22px 26px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 16 }}>
+        <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 10, padding: "18px 20px" }}>
           <div style={{ fontSize: 9, letterSpacing: 4, color: "#5a6280", marginBottom: 12 }}>WHAT IS THIS</div>
-          <p style={{ margin: 0, fontSize: 14, lineHeight: 1.8, color: "#b0bcd0" }}>{data.overview.summary}</p>
+          <p style={{ margin: 0, fontSize: 13, lineHeight: 1.8, color: "#b0bcd0" }}>{data.overview.summary}</p>
         </div>
-        <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 10, padding: "22px 26px" }}>
+        <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 10, padding: "18px 20px" }}>
           <div style={{ fontSize: 9, letterSpacing: 4, color: "#5a6280", marginBottom: 12 }}>MUST HAVE</div>
           {data.overview.mustHave.map((item, i) => (
-            <div key={i} style={{ display: "flex", gap: 10, marginBottom: 9, fontSize: 13, color: "#b0bcd0", lineHeight: 1.5 }}>
+            <div key={i} style={{ display: "flex", gap: 10, marginBottom: 9, fontSize: 12, color: "#b0bcd0", lineHeight: 1.5 }}>
               <span style={{ color: "#00ff88", flexShrink: 0 }}>✓</span><span>{item}</span>
             </div>
           ))}
         </div>
       </div>
-      <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 10, padding: "22px 26px" }}>
+      <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 10, padding: "18px 20px" }}>
         <div style={{ fontSize: 9, letterSpacing: 4, color: "#5a6280", marginBottom: 18 }}>THE ROADMAP</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4,1fr)", gap: 14 }}>
           {data.overview.phases.map((phase, i) => (
             <div key={i} style={{ position: "relative" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                <div style={{ width: 26, height: 26, borderRadius: "50%", background: meta.color + "22", border: `1px solid ${meta.color}55`, color: meta.color, fontSize: 11, fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</div>
+                <div style={{ width: 24, height: 24, borderRadius: "50%", background: meta.color + "22", border: `1px solid ${meta.color}55`, color: meta.color, fontSize: 11, fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{i + 1}</div>
                 <div style={{ fontSize: 9, letterSpacing: 2, color: meta.color }}>{phase.label}</div>
               </div>
               <div style={{ fontSize: 12, color: "#8896b0", lineHeight: 1.6 }}>{phase.desc}</div>
-              {i < data.overview.phases.length - 1 && <div style={{ position: "absolute", top: 13, right: -10, color: "#5a6280", fontSize: 14 }}>→</div>}
+              {!isMobile && i < data.overview.phases.length - 1 && <div style={{ position: "absolute", top: 12, right: -10, color: "#5a6280", fontSize: 14 }}>→</div>}
             </div>
           ))}
         </div>
@@ -947,10 +1195,23 @@ function StepsTab({ data, meta, session, myName, myColor, completions = [], onTo
     }
   }
 
+  const isMobile = window.innerWidth < 700;
+  const [showSidebar, setShowSidebar] = useState(!isMobile);
+
   return (
-    <div style={{ display: "flex", height: "100%", overflow: "hidden" }}>
+    <div style={{ display: "flex", height: "100%", overflow: "hidden", flexDirection: "column" }}>
+      {/* Mobile step picker bar */}
+      {isMobile && (
+        <div style={{ background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding:"8px 12px", display:"flex", alignItems:"center", gap:8, flexShrink:0 }}>
+          <button onClick={() => setShowSidebar(s => !s)} style={{ background:"transparent", border:`1px solid #1e2235`, color:"#5a6280", cursor:"pointer", fontFamily:"inherit", fontSize:10, letterSpacing:2, padding:"6px 10px", borderRadius:4 }}>
+            {showSidebar ? "✕ CLOSE" : "☰ STEPS"}
+          </button>
+          <div style={{ fontSize:11, color:"#5a6280" }}>Step {current+1}/{data.steps.length} — <span style={{ color:"#e0e6f0" }}>{step.title}</span></div>
+        </div>
+      )}
+      <div style={{ display: "flex", flex:1, overflow: "hidden" }}>
       {/* Sidebar */}
-      <div style={{ width: 248, flexShrink: 0, background: "#0c0f1a", borderRight: "1px solid #1e2235", overflowY: "auto", padding: "16px 0" }}>
+      <div style={{ width: isMobile ? "100%" : 248, flexShrink: 0, background: "#0c0f1a", borderRight: "1px solid #1e2235", overflowY: "auto", padding: "16px 0", display: (!isMobile || showSidebar) ? "block" : "none", position: isMobile ? "absolute" : "relative", zIndex: isMobile ? 10 : "auto", height: isMobile ? "calc(100% - 40px)" : "auto", top: isMobile ? 40 : "auto", left:0 }}>
         {!isSolo && <div style={{ padding: "0 16px 14px" }}><WhatsNextCard steps={data.steps} completions={completions} mapColor={meta.color} /></div>}
         <div style={{ padding: "0 16px 14px" }}>
           <div style={{ fontSize: 9, letterSpacing: 3, color: "#5a6280", marginBottom: 6 }}>PROGRESS</div>
@@ -975,7 +1236,7 @@ function StepsTab({ data, meta, session, myName, myColor, completions = [], onTo
         ))}
       </div>
       {/* Main content */}
-      <div style={{ flex: 1, overflowY: "auto", padding: "28px 36px" }}>
+      <div style={{ flex: 1, overflowY: "auto", padding: isMobile ? "16px" : "28px 36px", display: isMobile && showSidebar ? "none" : "block" }}>
         <div style={{ maxWidth: 700 }}>
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 18, gap: 16 }}>
             <div>
@@ -1020,6 +1281,7 @@ function StepsTab({ data, meta, session, myName, myColor, completions = [], onTo
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );
@@ -1342,8 +1604,70 @@ function TipsTab({ data }) {
   );
 }
 
+// ═══ SHIELD TAB ═══
+function ShieldTab({ data, meta }) {
+  const s = data.shield;
+  if (!s) return null;
+  return (
+    <div style={{ padding:"28px 40px", maxWidth:900, margin:"0 auto" }}>
+      <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:24 }}>
+        <span style={{ fontSize:32 }}>🛡️</span>
+        <div>
+          <h2 style={{ margin:"0 0 4px", fontSize:22, color:"#fff" }}>{s.name}</h2>
+          <div style={{ fontSize:11, color:meta.color, letterSpacing:2 }}>3 PARTS TO BUILD</div>
+        </div>
+      </div>
+      <p style={{ margin:"0 0 24px", fontSize:13, color:"#b0bcd0", lineHeight:1.8, background:"#0c0f1a", border:"1px solid #1e2235", borderRadius:8, padding:"16px 20px" }}>{s.description}</p>
+
+      {/* Parts */}
+      <div style={{ fontSize:9, letterSpacing:4, color:"#5a6280", marginBottom:14 }}>PARTS AND SPAWN LOCATIONS</div>
+      <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
+        {s.parts.map((part, i) => (
+          <div key={i} style={{ background:"#0c0f1a", border:"1px solid #1e2235", borderLeft:`3px solid ${meta.color}`, borderRadius:8, padding:"16px 20px" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+              <div style={{ width:24, height:24, borderRadius:"50%", background:meta.color+"22", border:`1px solid ${meta.color}55`, color:meta.color, fontSize:11, fontWeight:"bold", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>{i+1}</div>
+              <div style={{ fontSize:14, color:"#fff", fontWeight:"bold" }}>{part.name}</div>
+            </div>
+            <div style={{ fontSize:9, letterSpacing:2, color:"#5a6280", marginBottom:8 }}>POSSIBLE SPAWN LOCATIONS</div>
+            {part.locations.map((loc, j) => (
+              <div key={j} style={{ display:"flex", gap:8, marginBottom:6, fontSize:12, color:"#8898b8", lineHeight:1.6 }}>
+                <span style={{ color:meta.color, flexShrink:0 }}>→</span><span>{loc}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Build location */}
+      <div style={{ background:"#0a1628", border:"1px solid #00e5ff33", borderRadius:8, padding:"14px 18px", marginBottom:20 }}>
+        <div style={{ fontSize:9, letterSpacing:3, color:"#00e5ff", marginBottom:6 }}>🔨 WHERE TO BUILD</div>
+        <div style={{ fontSize:13, color:"#e0e6f0" }}>{s.buildAt}</div>
+      </div>
+
+      {/* Uses */}
+      <div style={{ fontSize:9, letterSpacing:4, color:"#5a6280", marginBottom:12 }}>HOW TO USE IT</div>
+      <div style={{ display:"flex", flexDirection:"column", gap:8, marginBottom:24 }}>
+        {s.uses.map((use, i) => (
+          <div key={i} style={{ display:"flex", gap:10, fontSize:13, color:"#b0bcd0", lineHeight:1.6, padding:"8px 0", borderBottom:i<s.uses.length-1?"1px solid #1e2235":"none" }}>
+            <span style={{ color:"#00ff88", flexShrink:0 }}>✓</span><span>{use}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Tips */}
+      <div style={{ fontSize:9, letterSpacing:4, color:"#5a6280", marginBottom:12 }}>PRO TIPS</div>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+        {s.tips.map((tip, i) => (
+          <div key={i} style={{ background:"#0a1a0a", border:"1px solid #1a3a1a", borderRadius:8, padding:"12px 16px", fontSize:12, color:"#7ac47a", lineHeight:1.7 }}>
+            💡 {tip}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ═══ MAP GUIDE WRAPPER ═══
-const MAP_TABS = ["OVERVIEW","STEPS","MAP","WEAPONS","ENEMIES","TIPS"];
 
 function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
   const [tab, setTab] = useState(0);
@@ -1354,6 +1678,9 @@ function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
   const participants = useParticipants(sessionId, session);
   const { completions, toggleStep } = useStepCompletions(sessionId, session, myName, myColor);
 
+  const hasShield = !!data.shield;
+  const MAP_TABS = ["OVERVIEW","STEPS","MAP","WEAPONS","ENEMIES","TIPS", ...(hasShield ? ["SHIELD"] : [])];
+
   const pages = [
     <OverviewTab data={data} meta={meta} completions={completions} session={session} />,
     <StepsTab data={data} meta={meta} session={session} myName={myName} myColor={myColor} completions={completions} onToggle={toggleStep} />,
@@ -1361,6 +1688,7 @@ function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
     <WeaponsTab data={data} meta={meta}/>,
     <EnemiesTab data={data} meta={meta}/>,
     <TipsTab data={data}/>,
+    ...(hasShield ? [<ShieldTab data={data} meta={meta}/>] : []),
   ];
 
   return (
@@ -1377,10 +1705,10 @@ function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
       )}
 
       {/* Tab nav */}
-      <div style={{ display:"flex", alignItems:"center", background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding:"0 28px", flexShrink:0 }}>
-        {!isSolo && <><span style={{ fontSize:13, marginRight:8 }}>{meta.icon}</span><span style={{ fontSize:10, color:meta.color, letterSpacing:2, marginRight:16 }}>{meta.name}</span></>}
+      <div style={{ display:"flex", alignItems:"center", background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding:"0 28px", overflowX:"auto", flexShrink:0 }}>
+        {!isSolo && <><span style={{ fontSize:13, marginRight:8 }}>{meta.icon}</span><span style={{ fontSize:10, color:meta.color, letterSpacing:2, marginRight:16, whiteSpace:"nowrap" }}>{meta.name}</span></>}
         {MAP_TABS.map((label,i) => (
-          <button key={i} onClick={() => setTab(i)} style={{ padding:"0 16px", height:44, background:"transparent", border:"none", borderBottom:tab===i?`2px solid ${meta.color}`:"2px solid transparent", color:tab===i?meta.color:"#5a6280", fontSize:10, letterSpacing:2, cursor:"pointer", fontFamily:"inherit", flexShrink:0 }}>{label}</button>
+          <button key={i} onClick={() => setTab(i)} style={{ padding:"0 16px", height:44, background:"transparent", border:"none", borderBottom:tab===i?`2px solid ${meta.color}`:"2px solid transparent", color:tab===i?meta.color:label==="SHIELD"?"#ffd60088":"#5a6280", fontSize:10, letterSpacing:2, cursor:"pointer", fontFamily:"inherit", flexShrink:0, whiteSpace:"nowrap" }}>{label==="SHIELD"?"🛡️ SHIELD":label}</button>
         ))}
       </div>
 
@@ -1397,15 +1725,16 @@ function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
 
 // ═══ HOME SCREEN ═══
 function HomeScreen({ onSelect }) {
+  const isMobile = window.innerWidth < 600;
   return (
     <div style={{ width:"100vw", minHeight:"100vh", background:"#060810", fontFamily:"'Courier New',monospace", color:"#e0e6f0" }}>
-      <div style={{ padding:"36px 40px 24px", borderBottom:"1px solid #1e2235", background:"#0c0f1a" }}>
-        <div style={{ fontSize:10, letterSpacing:5, color:"#00e5ff", marginBottom:8 }}>BLACK OPS 3 · ZOMBIES CHRONICLES + BASE GAME</div>
-        <h1 style={{ margin:"0 0 8px", fontSize:36, color:"#fff", letterSpacing:2 }}>☣️ Easter Egg Guide</h1>
-        <p style={{ margin:0, fontSize:13, color:"#5a6280" }}>Select a map to open the full guide — steps, map reference, weapons, enemies, and pro tips.</p>
+      <div style={{ padding: isMobile ? "20px 16px 16px" : "36px 40px 24px", borderBottom:"1px solid #1e2235", background:"#0c0f1a" }}>
+        <div style={{ fontSize:10, letterSpacing: isMobile ? 2 : 5, color:"#00e5ff", marginBottom:8 }}>BLACK OPS 3 · ZOMBIES CHRONICLES + BASE GAME</div>
+        <h1 style={{ margin:"0 0 8px", fontSize: isMobile ? 24 : 36, color:"#fff", letterSpacing:2 }}>☣️ Easter Egg Guide</h1>
+        <p style={{ margin:0, fontSize:12, color:"#5a6280" }}>Select a map to open the full guide — steps, map reference, weapons, enemies, and pro tips.</p>
       </div>
-      <div style={{ padding:"32px 40px" }}>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:18, maxWidth:1200 }}>
+      <div style={{ padding: isMobile ? "16px" : "32px 40px" }}>
+        <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill,minmax(320px,1fr))", gap: isMobile ? 12 : 18, maxWidth:1200 }}>
           {MAPS_CONFIG.map(m => (
             <div key={m.id} onClick={() => onSelect(m.id)}
               style={{ background:"#0c0f1a", border:`1px solid #1e2235`, borderTop:`3px solid ${m.color}`, borderRadius:12, padding:"24px 26px", cursor:"pointer", position:"relative", overflow:"hidden", transition:"all 0.15s" }}
