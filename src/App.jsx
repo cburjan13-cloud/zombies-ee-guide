@@ -22,10 +22,10 @@ const C = {
 };
 
 const MAPS_CONFIG = [
-  { id: "shadows", name: "SHADOWS OF EVIL", subtitle: "Morg City · BO3 Base Game", eeName: "The Beginning of the End", difficulty: 8, players: "1-4 (Solo viable)", time: "2-3 hours", color: "#9b00ff", icon: "👁️", tag: "COMPLEX", tagline: "A 1940s noir city crawling with evil. Complete four district rituals using Beast Mode and seal the Rift." },
-  { id: "ascension", name: "ASCENSION", subtitle: "Soviet Space Facility · Zombies Chronicles", eeName: "Casimir Mechanism", difficulty: 3, players: "Solo or 1-4", time: "45-90 min", color: "#00e5ff", icon: "🚀", tag: "BEGINNER FRIENDLY", tagline: "Free a trapped scientist using black hole grenades across three waves of Space Monkeys." },
-  { id: "shangrila", name: "SHANGRI-LA", subtitle: "Ancient Temple · Zombies Chronicles", eeName: "Stand-In", difficulty: 7, players: "2-4 REQUIRED", time: "1.5-2.5 hours", color: "#ff6b00", icon: "🏛️", tag: "REQUIRES 2 PLAYERS", tagline: "Trigger eclipse events and complete timed co-op rituals in a cursed ancient jungle temple." },
-  { id: "moon", name: "MOON", subtitle: "Lunar Surface · Zombies Chronicles", eeName: "Cryogenic Slumber Party", difficulty: 6, players: "1-4 (2 recommended)", time: "1-2 hours", color: "#aaccff", icon: "🌕", tag: "INTERMEDIATE", tagline: "Hack Soviet equipment, survive low gravity, and complete Richtofen's soul transfer to the MPD." },
+  { id: "shadows", name: "SHADOWS OF EVIL", subtitle: "Morg City · BO3 Base Game", eeName: "Apocalypse Averted", difficulty: 8, players: "1-4 (Solo viable)", time: "2-3 hours", color: "#9b00ff", icon: "👁️", tag: "COMPLEX", tagline: "A 1940s noir city crawling with evil. Complete four character rituals, obtain the Apothicon Sword, and trap the Shadow Man before the apocalypse begins." },
+  { id: "ascension", name: "ASCENSION", subtitle: "Soviet Space Facility · Zombies Chronicles", eeName: "Casimir Mechanism", difficulty: 5, players: "4 Players REQUIRED", time: "1.5-2.5 hours", color: "#00e5ff", icon: "🚀", tag: "4 PLAYERS REQUIRED", tagline: "Activate 5 nodes across the map — including a clock puzzle, a monkey-round button press, and powering the Casimir Mechanism with every upgraded wonder weapon at once." },
+  { id: "shangrila", name: "SHANGRI-LA", subtitle: "Ancient Temple · Zombies Chronicles", eeName: "Time Travel Will Tell", difficulty: 9, players: "4 Players REQUIRED", time: "2-3 hours", color: "#ff6b00", icon: "🏛️", tag: "4 PLAYERS REQUIRED", tagline: "Trigger the eclipse with simultaneous button presses, divert waterfalls, shrink a stone ball, light gas pipes with a Napalm zombie, and claim the Focusing Stone." },
+  { id: "moon", name: "MOON", subtitle: "Lunar Surface · Zombies Chronicles", eeName: "Cryogenic Slumber Party / Big Bang Theory", difficulty: 7, players: "Solo to Step 5; Full EE: 4 Required + Prerequisites", time: "1.5-2.5 hours", color: "#aaccff", icon: "🌕", tag: "PREREQUISITES REQUIRED", tagline: "Requires the Vril Device (from Call of the Dead EE) and Focusing Stone (from Shangri-La EE). Complete Samantha Says, the lab hack, and the MPD ritual." },
   { id: "origins", name: "ORIGINS", subtitle: "WWI France · Zombies Chronicles", eeName: "Little Lost Girl", difficulty: 9, players: "1-4 (2-3 ideal)", time: "2-4 hours", color: "#ffd600", icon: "⚙️", tag: "HARDEST", tagline: "Build and upgrade four elemental staffs, activate three giant robots, and complete an ancient ritual." },
   { id: "dereisendrache", name: "DER EISENDRACHE", subtitle: "Austrian Castle · DLC 1 — Awakening", eeName: "My Brother's Keeper", difficulty: 7, players: "1-4 (Solo viable)", time: "2-3 hours", color: "#3399ff", icon: "🏰", tag: "BOW MASTERY", hasShield: true, tagline: "An ancient Austrian castle fortress. Build the Wrath of the Ancients bow, master its four elemental forms, and complete Richtofen's darkest ritual." },
 ];
@@ -154,56 +154,59 @@ const SHADOWS_DATA = {
 // ═══ ASCENSION DATA ═══
 const ASCENSION_DATA = {
   overview: {
-    summary: "A Soviet-era rocket facility. Free trapped scientist Dr. Gersch by using the Gersch Device (black hole grenade) at three lander locations across three Space Monkey attack waves.",
+    summary: "A Soviet-era rocket launch facility. Despite seeming simple, Ascension's Easter Egg requires EXACTLY 4 players and involves activating 5 nodes around the map: throwing a Gersch Device at a hidden generator, simultaneously pressing perk buttons during a Space Monkey round, standing completely still in the clock room for 1-2 minutes, spelling LUNA by riding landers in sequence, and powering the Casimir Mechanism with every upgraded wonder weapon at once.",
     phases: [
-      { label: "SETUP", desc: "Power on, ride all 3 lunar landers, get the Gersch Device from the Mystery Box." },
-      { label: "FREE GERSCH", desc: "Throw a Gersch Device at the rocket base to start the Easter egg." },
-      { label: "MONKEY ROUNDS", desc: "In 3 Space Monkey rounds, throw Gersch Devices near all 3 landers each time." },
-      { label: "COMPLETION", desc: "After the third monkey round, audio plays — Casimir Mechanism complete." },
+      { label: "SETUP", desc: "Turn on power, ride all 3 landers to unlock PaP, get Gersch Device and Matryoshka Dolls. Upgrade the Thundergun (Zeus Cannon), Crossbow, and Ray Guns." },
+      { label: "NODE 1", desc: "Throw a Gersch Device at the hidden generator near the PhD Flopper area — outside the map boundary." },
+      { label: "NODE 2", desc: "During a Space Monkey round, all 4 players simultaneously press small buttons near 4 specific perk machines." },
+      { label: "NODE 3", desc: "All players stand still in the clock room (lower launch pad area) for 1-2 minutes without moving." },
+      { label: "NODE 4 + CASIMIR", desc: "Ride landers spelling L-U-N-A. Then throw Gersch + Matryoshka Dolls + fire all upgraded weapons at the Casimir Mechanism simultaneously." },
     ],
     mustHave: [
-      "Juggernog — just past spawn on the left wall, buy immediately after power",
-      "Gersch Device — the wonder weapon from Mystery Box, required for every EE step",
-      "PhD Flopper — near Lander C, prevents fall damage, great solo perk",
-      "At least 3 Gersch Devices saved before each Space Monkey round",
+      "4 PLAYERS — this Easter Egg cannot be done solo or with fewer than 4 players",
+      "Gersch Device — needed for Node 1 and the Casimir Mechanism finale, get multiple from the Mystery Box",
+      "Matryoshka Dolls — needed for the final Casimir Mechanism step",
+      "Zeus Cannon (Pack-a-Punched Thundergun) — required for the Casimir finale",
+      "Upgraded Crossbow and 2x Upgraded Ray Guns — all required for the Casimir finale",
+      "PaP machine access — ride all 3 landers first, then interact with the 3rd-floor rooftop control panel",
     ],
   },
   steps: [
-    { phase: "SETUP", icon: "⚡", title: "Turn On the Power", color: "#00ff88",
-      location: "Centrifuge Room — large circular room with a spinning centrifuge near the rocket",
-      locationDetail: "From spawn, buy 2 doors (~750 pts each) and head toward the large circular room with a giant centrifuge spinning in the center. The power switch is a large red lever on the right side of this room before the path up to the launch pad.",
-      steps: ["Buy 2 doors from spawn and head toward the Centrifuge Room.", "Enter the large circular room — the centrifuge spins in the center.", "Find and hold Square/X on the red lever. Map fully lights up.", "Immediately return to spawn area and buy Juggernog — it is on the wall just past spawn."],
-      tip: "After Juggernog, head toward PhD Flopper near Lander C. Prevents fall damage and is great solo.", warning: null },
-    { phase: "SETUP", icon: "🚀", title: "Ride All 3 Lunar Landers", color: "#00e5ff",
-      location: "Three locations — near Stamin-Up (upper-left), Speed Cola (upper-right), PhD Flopper (lower area)",
-      locationDetail: "Each lander sits right next to a perk machine. Lander A is upper-left near Stamin-Up. Lander B is upper-right near Speed Cola. Lander C is in the lower area near PhD Flopper.",
-      steps: ["Lander A: From Centrifuge, go left to Stamin-Up. Yellow pad is right next to it. Stand on it and hold Square/X.", "Lander B: From Centrifuge, go right to Speed Cola. Stand on pad and ride.", "Lander C: Head lower toward PhD Flopper. Third lander is beside it.", "Each lander teleports you back near the Centrifuge Room — that is normal."],
-      tip: "Open doors on your route to each lander. Full map access is required for the EE.", warning: "You MUST ride all 3 before EE steps will work. Do not skip this." },
-    { phase: "SETUP", icon: "🌀", title: "Get the Gersch Device", color: "#ff6b00",
-      location: "Mystery Box — look for the blue vertical light beam anywhere on the map",
-      locationDetail: "Box starts random each game. Common spots: near Centrifuge Room, near Speed Cola, and near PhD Flopper in the lower areas. Look for a tall blue/white light beam shooting straight up.",
-      steps: ["Find the Mystery Box by looking for its vertical blue light beam.", "Spin the box (950 pts per spin). The Gersch Device looks like a dark grenade with a glowing void core.", "Box gives you 2 when obtained. You need at least 3-4 total before the first monkey round.", "Keep spinning between rounds. If box moves, find the new beam."],
-      tip: "Do NOT use Gersch Devices on regular zombie rounds. Save every single one.", warning: "Gersch Device is 100% required. There is no substitute." },
-    { phase: "EASTER EGG", icon: "🎯", title: "Free Gersch — Throw at the Rocket", color: "#ff00aa",
-      location: "Main Rocket Launch Pad — top of the map, above the Centrifuge Room",
-      locationDetail: "From the Centrifuge Room, take the upward path toward the big rocket. The launch pad is at the very top — a wide open area with the giant rocket. Stand at the base/foot of the rocket as close as you can get.",
-      steps: ["Navigate up to the rocket launch pad at the top of the map.", "Stand at the very base/foot of the rocket.", "Cook and throw a Gersch Device directly at the rocket base.", "You will hear Dr. Gersch speak in a distorted voice — Easter egg has officially started."],
-      tip: "Do this between rounds or very early in a round for breathing room.", warning: "If you do not hear Gersch speak, wrong spot. Try again right at the foot of the rocket." },
-    { phase: "EASTER EGG", icon: "🐒", title: "Space Monkey Round — Phase 1", color: "#ffd600",
-      location: "All 3 lander locations — Stamin-Up (A), Speed Cola (B), PhD Flopper (C)",
-      locationDetail: "Space Monkeys first appear around rounds 6-8. Distinct screeching sound and different music. Throw a Gersch Device near each lander while monkeys are active in that area.",
-      steps: ["When monkey round starts, stay calm. Let them come to you.", "Head to Lander A (Stamin-Up, upper-left). Wait for monkeys near it, throw Gersch Device at the lander pad area.", "Rush to Lander B (Speed Cola, upper-right). Gersch Device near the lander while monkeys present.", "Rush to Lander C (PhD Flopper, lower area). Gersch Device near the lander.", "All 3 in the SAME monkey round. Audio cue after confirms progress."],
-      tip: "Start at the farthest lander and run back toward spawn. Better routing.", warning: "Miss a lander? Wait for next Space Monkey round (~every 4-5 rounds) to complete it." },
-    { phase: "EASTER EGG", icon: "🐒", title: "Space Monkey Round — Phase 2", color: "#ffd600",
-      location: "Same locations — Lander A, B, and C",
-      locationDetail: "Monkey rounds recur every 4-5 rounds. Restock Gersch Devices from the box between rounds. Need at least 3.",
-      steps: ["Survive to next Space Monkey round. Restock Gersch Devices between rounds.", "Repeat: Gersch Device near Lander A, B, and C while monkeys are active.", "Audio cue from Gersch after the round confirms phase 2 complete."],
-      tip: "By now you should have solid perks. Monkey rounds get slightly harder — stay mobile.", warning: null },
-    { phase: "EASTER EGG", icon: "✅", title: "Space Monkey Round — Phase 3 & Completion", color: "#00ff88",
-      location: "Final time — all 3 lander locations",
-      locationDetail: "Third and final monkey round. Same execution as phases 1 and 2. After completing all 3 lander throws this final round, Gersch delivers his final transmission.",
-      steps: ["Restock Gersch Devices if needed before this round.", "Third monkey round: Gersch Device near all 3 landers while monkeys are active.", "After round ends with all 3 landers hit, Gersch delivers a final audio transmission.", "Radio message plays — Casimir Mechanism complete."],
-      tip: "Play it safe. Solo means no revive. Stay near exits.", warning: "Ending is an audio clip only — no cutscene. The payoff is in the hunt." },
+    { phase: "SETUP", icon: "⚡", title: "Power On + Ride All 3 Landers", color: "#00ff88",
+      location: "Centrifuge Room for power switch. Landers near: Stamin-Up (A), Speed Cola (B), PhD Flopper (C).",
+      locationDetail: "From spawn, buy doors toward the Centrifuge Room — large circular room with a giant spinning centrifuge. Power switch is on the right side wall. After power: ride all 3 landers. Lander A is upper-left near Stamin-Up. Lander B is upper-right near Speed Cola. Lander C is lower area near PhD Flopper. After riding all 3, go to the 3rd floor rooftop and interact with the control panel to open the launch doors and unlock Pack-a-Punch.",
+      steps: ["Buy doors from spawn to reach the Centrifuge Room. Activate the power lever.", "Buy Juggernog immediately — on the wall just past spawn.", "Ride Lander A (Stamin-Up, upper-left): stand on the yellow pad and hold Square/X.", "Ride Lander B (Speed Cola, upper-right): same method.", "Ride Lander C (PhD Flopper, lower area): same method.", "Go to the 3rd floor rooftop and interact with the control panel to open launch doors and unlock PaP."],
+      tip: "Buy PhD Flopper near Lander C — it prevents fall damage and is great solo. Also hunt the Mystery Box for the Thundergun.", warning: null },
+    { phase: "SETUP", icon: "🔫", title: "Get the Wonder Weapons and Upgrade Them", color: "#00e5ff",
+      location: "Mystery Box — look for the vertical blue light beam anywhere on the map",
+      locationDetail: "The Casimir Mechanism finale requires firing ALL of these simultaneously: Zeus Cannon (PaP'd Thundergun), upgraded Crossbow, and 2 upgraded Ray Guns. With 4 players, each player handles one. Everyone needs to be hunting the box and getting to PaP early.",
+      steps: ["Hunt the Mystery Box for the Thundergun (big air-blast cannon). Pack-a-Punch it → Zeus Cannon.", "Also hunt for: Crossbow (Pack-a-Punch it), Ray Gun (Pack-a-Punch it).", "Also get the Gersch Device (black hole grenade) and Matryoshka Dolls from the box.", "Assign weapons to players: one Zeus Cannon, one Crossbow, one or two Ray Guns.", "Do NOT use Gersch Devices recklessly — you need them for Node 1 and the finale."],
+      tip: "The box moves after several uses — follow the blue light beam to find its new location.", warning: "If someone cannot get the Zeus Cannon from the box, keep trying between rounds. It is required." },
+    { phase: "NODE 1", icon: "🌀", title: "Node 1 — Throw Gersch Device at the Generator", color: "#ff6b00",
+      location: "Near the PhD Flopper corridor — outside the map boundary past the launch platform ramp",
+      locationDetail: "Go to the PhD Flopper/Widow's Wine area. Walk to the very end of the corridor where you can hear wind howling past the map boundary. Look left toward a barrier window. A generator sits just outside the map boundary in that direction.",
+      steps: ["Navigate to the PhD Flopper corridor on the launch platform side.", "Walk toward the end of the corridor — you'll hear wind howling and can see through a barrier window.", "Throw a Gersch Device outside the map boundary to suck in the hidden generator.", "Confirmation: Gersch's voice says 'it needs as much power as possible.'"],
+      tip: "If Samantha steals your Gersch Device instead, your throw was off. Reposition and try with another Gersch when you get one.", warning: "Make sure you're throwing at the generator outside the map, not a zombie. Hear the wind cue — you're in the right corridor." },
+    { phase: "NODE 2", icon: "🐒", title: "Node 2 — 4 Players Press Perk Buttons During Monkey Round", color: "#ffd600",
+      location: "4 specific perk machine locations — small red buttons appear only during Space Monkey rounds",
+      locationDetail: "During a Space Monkey round, 4 small red buttons appear on walls near 4 of the perk machines. They are small and dark — hard to spot in dim monkey round lighting. All 4 players must press one button each simultaneously. Buttons are near: PhD Flopper (left side), Juggernog (wall across from machine), Speed Cola (left wall opposite stairs), and Stamin-Up (left side of machine).",
+      steps: ["Wait for a Space Monkey round to begin (distinctive music + screeching). These occur every 4-7 rounds after a perk is purchased.", "Assign each player to one of the 4 button locations BEFORE the monkey round.", "Button 1: near PhD Flopper, on the left side of the machine.", "Button 2: near Juggernog, on the wall directly across from the machine.", "Button 3: near Speed Cola, on the left wall opposite the stairs.", "Button 4: near Stamin-Up, on the left side of the machine.", "All 4 players simultaneously press their buttons. Use a 3-2-1 countdown.", "Confirmation: computer audio cue plays."],
+      tip: "Scout all 4 button locations during a regular round BEFORE the monkey round starts. The buttons only appear during monkey rounds.", warning: "No button appears near Quick Revive or Mule Kick. Miss a button? Wait for the next monkey round — they recur every 4-7 rounds." },
+    { phase: "NODE 3", icon: "🕐", title: "Node 3 — Clock Room — Stand Still 1-2 Minutes", color: "#aaccff",
+      location: "Lower launch pad area — the circular room with the clock on the wall (where the rocket used to be)",
+      locationDetail: "PaP must be accessible before this step. Go to the lower launch pad area — the room with the old rocket mount and a clock on the wall. All players must remain within the circular area in front of the clock without moving. Stand still for 1-2 minutes. Keep a crawler alive outside the room so the round doesn't end.",
+      steps: ["Ensure PaP is unlocked (all 3 landers ridden and rooftop control panel activated).", "Leave a crawler zombie alive outside this room so the round timer doesn't advance.", "All players navigate to the clock room at the lower launch pad area.", "Stand inside the circular floor area directly in front of the clock. Everyone must be inside this zone.", "Do not move. Wait 1-2 minutes while standing still.", "Audio cue: Gersch says 'yes almost there, hurry she's coming.' The round ends automatically.", "Confirmation: all players hear the round-end cue from the location."],
+      tip: "Use a crawler zombie outside the room to freeze the round timer. You have all the time you need as long as the crawler is alive.", warning: "Anyone moving outside the circle restarts the countdown. Keep everyone still and call it out if someone drifts." },
+    { phase: "NODE 4", icon: "🚀", title: "Node 4 — Spell LUNA on the Landers", color: "#ff00aa",
+      location: "All 3 lander pads — ride them in a specific sequence",
+      locationDetail: "The howling sound from Node 1 moves to the lunar landers after Node 3. Ride the landers in this exact sequence to spell L-U-N-A: L=Stamin-Up, U=Spawn, N=Speed Cola, A=Stamin-Up again. Have teammates call the lander to each station to avoid spending extra points on the ride.",
+      steps: ["After Node 3, the wind/howling sound moves to the landers — you're ready.", "Ride to Stamin-Up (L)", "Ride back to Spawn (U)", "Ride to Speed Cola (N)", "Ride back to Stamin-Up (A)", "Have teammates call landers to the desired station to save points.", "Confirmation: audio cue plays after the A step."],
+      tip: "Coordinate who calls which lander to avoid conflicts. Call out each letter as you complete it.", warning: null },
+    { phase: "COMPLETION", icon: "✅", title: "Power the Casimir Mechanism", color: "#00ff88",
+      location: "Outside the map boundary, adjacent to the Stamin-Up/claymore area — the Casimir Mechanism machine",
+      locationDetail: "The Casimir Mechanism is a machine visible just outside the map boundary near Stamin-Up. After all 4 nodes, an orb appears on the floor in front of it. The sequence: Gersch Device on the orb → Matryoshka Dolls at it → ALL players fire their upgraded weapons (Zeus Cannon, Crossbow, Ray Guns) into the black hole simultaneously.",
+      steps: ["Navigate to the area near Stamin-Up by the claymore wall buy. Look outside the map boundary for the Casimir Mechanism machine.", "An orb (light ball) sits on the floor in front of the device.", "Throw a Gersch Device onto the orb — a black hole forms.", "Immediately throw Matryoshka Dolls at the black hole.", "All players simultaneously fire their upgraded weapons into the black hole: Zeus Cannon, upgraded Crossbow, upgraded Ray Guns.", "Fire all weapons at once during the black hole — timing is critical.", "Confirmation: audio says 'Casimir Mechanism safety protocol initiated, shutting down power systems.' Then Gersch says 'yes, I'm free!'", "All players receive a 90-second Death Machine. EE complete."],
+      tip: "Assign firing order before approaching — everyone needs to know what they're firing and when. Call it out: 'Throw on 3, 2, 1... fire!'", warning: "All upgraded weapons must fire during the same black hole window. Missing one weapon means the node fails." },
   ],
   weapons: [
     { name: "Gersch Device", type: "MYSTERY BOX", icon: "🌀", color: "#00e5ff",
@@ -242,67 +245,94 @@ const ASCENSION_DATA = {
     { id: "box2", x: 68, y: 52, label: "BOX SPAWN", color: "#888", type: "box", desc: "Possible box spawn — near Centrifuge Room upper areas." },
   ],
   mapEdges: [["spawn","centrifuge"],["spawn","lander_c"],["centrifuge","rocket"],["centrifuge","lander_a"],["centrifuge","lander_b"],["lander_c","phd"],["lander_a","stamina"],["lander_b","speed"],["spawn","jugg"],["lander_c","doubletap"],["centrifuge","power"]],
-  mapPhoto: "https://static.wikia.nocookie.net/callofduty/images/Ascension_map_layout.png",
+  mapPhoto: "https://static.accelerated-ideas.com/news/images/ascension_ee_zombie_chronicles.jpg",
   mapOrientation: { north: "Rocket Launch Pad (top)", south: "Lander C / PhD Flopper (bottom)", east: "Lander B / Speed Cola (right)", west: "Lander A / Stamin-Up (left)" },
   tips: [
-    { icon: "🎯", title: "Perk Priority", body: "Juggernog first always. Then PhD Flopper (Lander C area). Speed Cola third. Stamin-Up is helpful but optional. Protect Juggernog during monkey rounds — monkeys target it." },
-    { icon: "📦", title: "Mystery Box Hunting", body: "Follow the blue light beam. Common early spawns near Centrifuge Room and lower map near PhD Flopper. Box moves after several uses — teddy bear means it relocated." },
-    { icon: "🐒", title: "Surviving Monkey Rounds", body: "Monkeys go for perks not directly for you. Let them swarm near landers. Train them near a lander then Gersch Device. Do not waste Gersch Devices on random monkeys away from landers." },
-    { icon: "🌀", title: "Gersch Device Mechanics", body: "Throw it on the ground near the lander pad. The black hole appears and sucks in anything nearby for 5 seconds. You do not need to kill monkeys with it — just need the black hole near the lander while monkeys are active." },
-    { icon: "🔄", title: "Missed a Step?", body: "Monkey rounds return every 4-5 rounds. Miss a lander? Survive and retry next monkey round. Stock Gersch Devices in the meantime." },
-    { icon: "💰", title: "Point Management", body: "Budget ~12,000 pts for full setup: doors (2x750), Juggernog (2500), box spins (950 each). Knife zombies in early rounds for max points." },
+    { icon: "👥", title: "4 Players Required", body: "Node 2 (simultaneous perk buttons) makes this a strict 4-player EE. You cannot substitute players for this step. Make sure all 4 players know their button location before the first monkey round." },
+    { icon: "🔫", title: "Weapon Prep is Critical", body: "The Casimir Mechanism finale requires the Zeus Cannon, upgraded Crossbow, and 2 upgraded Ray Guns firing simultaneously. Start hunting the box for these weapons from Round 1. The Thundergun is rarest — if the box gives it, take it and PaP it immediately." },
+    { icon: "🐒", title: "Scout Node 2 Buttons First", body: "The 4 Node 2 buttons only appear during Space Monkey rounds and are small and dark. Find their exact locations (near PhD Flopper, Jug, Speed Cola, and Stamin-Up) during a regular round so you don't waste time searching during the monkey round." },
+    { icon: "🕐", title: "Node 3 — Keep a Crawler", body: "Node 3 requires standing still in the clock room for 1-2 minutes. Leave a crawler zombie alive outside the room so the round doesn't end while you wait. Everyone must stay inside the circle." },
+    { icon: "💰", title: "Point Management", body: "Budget heavily — you need doors, multiple perk machines, PaP for multiple weapons. Knife zombies in early rounds for max points. Assign who buys which perk to spread the cost." },
+    { icon: "🌀", title: "Gersch Device Saves", body: "Keep at least 2 Gersch Devices in reserve for Node 1 and the Casimir finale. Do not throw them casually during regular rounds — they are too rare and too important." },
   ],
 };
 
 // ═══ SHANGRI-LA DATA ═══
 const SHANGRILA_DATA = {
   overview: {
-    summary: "An ancient jungle temple cursed to loop in time. Two players are required — several steps demand simultaneous button presses impossible to do alone. Involves triggering eclipse events and completing timed challenges within each eclipse window.",
+    summary: "Shangri-La is a lush jungle/ancient temple map featuring time-travel through an 'Eclipse' mechanic. The Easter Egg is one of the most complex in the game and requires EXACTLY 4 players — Eclipse mode itself requires 4 simultaneous button presses, and multiple steps need players in different positions at the same time. The reward is exceptional: the player who picks up the Focusing Stone receives all 7 perks permanently for the rest of the game. The Focusing Stone obtained here is also required as a PREREQUISITE for the Moon full Easter Egg.",
     phases: [
-      { label: "SETUP", desc: "Turn on power, open the map, get perks and the Shrink Ray wonder weapon." },
-      { label: "ECLIPSE 1", desc: "Trigger the eclipse and complete the first simultaneous switch puzzle." },
-      { label: "ECLIPSES 2-4", desc: "Each eclipse cycle has a unique challenge — Shrink Ray, Matryoshka Dolls, waterfall interaction." },
-      { label: "COMPLETION", desc: "After all 4 eclipse challenges, the Focusing Stone appears in the temple." },
+      { label: "SETUP", desc: "Turn on power, unlock PaP (4 simultaneous pressure plates), get Shrink Ray from Mystery Box." },
+      { label: "ECLIPSE + SYMBOLS", desc: "All 4 players press 4 skull buttons simultaneously for Eclipse mode. Match stone slab symbols across the map." },
+      { label: "WATER SLIDE + STONE BALL", desc: "3 players stand on grates, 1 rides the water slide. Then shrink a stone ball and push it down the slide." },
+      { label: "GAS + WATERFALL + TRAPS", desc: "Turn gas valve, lure Napalm zombie to light gas pipes, plug waterfall holes with trip mines." },
+      { label: "GONGS + DIALS + FOCUSING STONE", desc: "Melee 12 wall symbols, explode wooden trap, set dials to 16-1-3-4, hit 4 correct gongs, shrink the meteor to get the Focusing Stone." },
     ],
     mustHave: [
-      "2 PLAYERS MINIMUM — simultaneous steps are literally impossible solo",
-      "Juggernog — main temple courtyard area",
-      "31-79 JGb215 Shrink Ray — required for Eclipse Challenge 2",
-      "Matryoshka Dolls — required for Eclipse Challenge 3, get before triggering Eclipse 3",
-      "Voice chat — timed simultaneous steps require real coordination",
+      "4 PLAYERS REQUIRED — Eclipse mode requires 4 simultaneous button presses. This EE cannot be done with fewer than 4 players",
+      "31-79 JGb215 Shrink Ray — required for multiple steps including shrinking the stone ball and the meteor",
+      "Upgraded Shrink Ray (Fractalizer via PaP) — required to shrink the meteor orbs in the final step",
+      "Trip mines / Spikemore mines (wall buy) — required to plug the waterfall holes",
+      "Juggernog — main temple courtyard area, buy immediately",
+      "Voice chat — essential for simultaneous steps throughout",
     ],
   },
   steps: [
-    { phase: "SETUP", icon: "⚡", title: "Turn On the Power", color: "#00ff88",
-      location: "Tunnel system below the temple",
-      locationDetail: "From spawn, buy doors to push through jungle paths into the temple structure. The power switch is in the underground tunnel/cave system beneath the main temple. The map is a circular loop — keep pushing in one direction.",
-      steps: ["Buy doors from spawn and push through the jungle path toward the temple.", "Enter the underground tunnel system beneath the main temple.", "Find and activate the power switch on the tunnel wall.", "Secure Juggernog immediately in the main temple courtyard area."],
-      tip: "The map is a circular loop — if you keep going you come back. Use this for training zombie hordes.", warning: null },
-    { phase: "SETUP", icon: "🔫", title: "Get the Shrink Ray and Matryoshka Dolls", color: "#ff6b00",
-      location: "Mystery Box — follow the blue beam on the circular map",
-      locationDetail: "The Shrink Ray (31-79 JGb215) fires a beam that temporarily shrinks zombies. Box spawns in several locations around the circular map — often near the waterfall, power switch area, or temple interior.",
-      steps: ["Hunt the Mystery Box for the Shrink Ray. It fires a continuous shrink beam.", "Shrunken zombies are harmless and can be stomped for 130 pts each.", "Also hunt for Matryoshka Dolls — you NEED them before Eclipse 3.", "Both players should have solid weapons before triggering Eclipse 1."],
-      tip: "Shrink Ray stomp farming in early rounds is excellent for building points.", warning: "Get Matryoshka Dolls BEFORE triggering Eclipse 3 or you waste the eclipse cycle." },
-    { phase: "EASTER EGG", icon: "🌑", title: "Eclipse Challenge 1 — Simultaneous Switches", color: "#ffd600",
-      location: "Eclipse trigger: mine cart area near waterfall. Switches: left and right sides of temple courtyard.",
-      locationDetail: "The eclipse is triggered by a switch in the mine cart area. When triggered, sky goes dark, a timer starts. Both players must press the two courtyard switches simultaneously. Communicate and countdown.",
-      steps: ["Both players navigate to the eclipse trigger switch in the mine cart area.", "Confirm both players are at their assigned courtyard switches BEFORE triggering.", "One player triggers the eclipse. Sky goes dark.", "Both players simultaneously press their courtyard switches. Use verbal countdown: 3-2-1-press.", "Audio cue confirms success before the eclipse ends."],
-      tip: "Scout the switch locations BEFORE triggering the eclipse. The window is short.", warning: "If eclipse ends before completion, trigger again next round. Unlimited retries — do not panic." },
-    { phase: "EASTER EGG", icon: "🌑", title: "Eclipse Challenge 2 — Shrink Ray", color: "#ffd600",
-      location: "Waterfall area — specific spot near the water feature",
-      locationDetail: "Re-trigger eclipse. For Challenge 2, use the Shrink Ray on a specific glowing target near the waterfall area during the eclipse window.",
-      steps: ["Re-trigger eclipse from mine cart switch when ready.", "One player with the Shrink Ray heads to the waterfall area.", "Fire the Shrink Ray at the glowing interactive target near the waterfall during the eclipse.", "Audio cue confirms success."],
-      tip: "The target is near the main water feature — look for something glowing that was not there before eclipse.", warning: null },
-    { phase: "EASTER EGG", icon: "🌑", title: "Eclipse Challenge 3 — Matryoshka Dolls", color: "#ffd600",
-      location: "Specific altar location in the temple interior",
-      locationDetail: "Both players must throw Matryoshka Dolls at a specific altar during the eclipse. The altar glows during the eclipse window and is in the main temple interior.",
-      steps: ["Ensure both players have Matryoshka Dolls BEFORE triggering this eclipse.", "Trigger eclipse from mine cart switch.", "Both players throw Matryoshka Dolls at the glowing altar in the temple interior.", "Timing needs to be close but not necessarily simultaneous."],
-      tip: "If you do not have Matryoshka Dolls, do NOT trigger this eclipse. Get them from the box first.", warning: "Matryoshka Dolls are REQUIRED for this challenge. Missing them wastes the eclipse window." },
-    { phase: "COMPLETION", icon: "✅", title: "Eclipse Challenge 4 and Focusing Stone", color: "#00ff88",
-      location: "Waterfall/water mechanism area — then temple courtyard for collection",
-      locationDetail: "Challenge 4 involves interacting with a water-related mechanism during the eclipse. After completing all 4 challenges, the Focusing Stone materializes in the main temple courtyard.",
-      steps: ["Trigger eclipse for the 4th time.", "Interact with the water mechanism near the waterfall when prompted during eclipse.", "After successful completion, navigate to the main temple courtyard.", "The Focusing Stone glows brightly — hold Square/X to collect.", "Audio plays — Stand-In complete."],
-      tip: "After collecting the Focusing Stone, both players hear the ending audio. That is full completion.", warning: null },
+    { phase: "SETUP", icon: "⚡", title: "Power On and Unlock Pack-a-Punch", color: "#00ff88",
+      location: "Power: underground tunnel below temple. PaP: 4 pressure plate stones around the map.",
+      locationDetail: "From spawn, buy doors through the jungle paths to the temple. Power switch is in the underground mine tunnel system below the temple. PaP is unlocked by all 4 players simultaneously standing on the 4 square pressure plate stones — one near each rotating animal statue. The 4 plate locations: center of spawn, next to the gong in the first waterfall area, in front of the power switch below, and in the mine tunnel near the power room.",
+      steps: ["Open doors from spawn through the jungle paths toward the temple structure.", "Find and activate the power switch in the underground tunnel system.", "Secure Juggernog in the main temple courtyard area immediately after power.", "All 4 players simultaneously stand on the 4 pressure plate stones to unlock PaP. Use a countdown.", "Hunt the Mystery Box for the Shrink Ray (31-79 JGb215) — a continuous shrink beam gun required for multiple EE steps."],
+      tip: "The Shrink Ray lets you stomp shrunken zombies for 130 pts each — great early-round point farming.", warning: "Pack-a-Punch the Shrink Ray (into the Fractalizer) before the late EE steps — the upgraded version is required to shrink the meteor orbs." },
+    { phase: "ECLIPSE", icon: "🌑", title: "Activate Eclipse Mode — 4 Simultaneous Skull Buttons", color: "#ffd600",
+      location: "4 circular skull buttons on the walls surrounding the Quick Revive machine in spawn",
+      locationDetail: "Four circular skull buttons are mounted on the walls surrounding the Quick Revive machine in the spawn area. All 4 players must press one button each at the same time. The eclipse activates with a teleporter sound, Richtofen speaks, and the sky visually changes to a red-black eclipse with a meteor above the temple.",
+      steps: ["Each player positions at one of the 4 skull button locations around Quick Revive in spawn.", "Use a verbal countdown: 3-2-1-press.", "All 4 players press simultaneously.", "Confirmation: teleporter sound, Richtofen dialogue, sky changes to eclipse with red meteor above.", "Eclipse mode is now active — you have a time window to complete the next step."],
+      tip: "Scout all 4 button positions before the countdown. They are on the walls surrounding the Quick Revive machine — not far from each other.", warning: "Eclipse has a time limit. Move immediately to the next step after confirmation." },
+    { phase: "ECLIPSE", icon: "🪨", title: "Stone Slab Symbol Matching", color: "#ffd600",
+      location: "Eclipse mode required. Stone slabs near the tunnel entrance and across from each other on both sides of map.",
+      locationDetail: "During Eclipse mode, press a skull button on the stone wall near the minecart/tunnel entrance. Floor slabs light up with symbols (diamond, circle, half-moon, triangle, 3 dots, etc.). 12 slabs on one side, 12 on the other. Two players must each stand on matching symbol slabs simultaneously — one calls out their symbol, the other finds the match, both step on at the same time.",
+      steps: ["During Eclipse, one player presses the circular skull button near the minecart/tunnel entrance.", "Floor slabs around the area light up with various symbols.", "Players split into pairs: one on each side of the slab area.", "Player 1 calls out what symbol their slab shows. Player 2 finds the matching one on their side.", "Both step on matching slabs at the same time. Repeat for all symbol pairs.", "Confirmation: audio from the two trapped explorers (Brock and Gary) mentioning a secret passageway."],
+      tip: "Designate 'caller' and 'matcher' roles before this step. The caller reads their symbol, the matcher finds the identical one.", warning: "Symbols must be matched simultaneously. Practice the communication pattern before triggering Eclipse." },
+    { phase: "ECLIPSE", icon: "🌊", title: "Water Slide — 3 on Grates, 1 Rides Down", color: "#ff6b00",
+      location: "Re-enter Eclipse mode. Waterfall area: 3 players at the bottom grates; 1 player at the top of the water slide.",
+      locationDetail: "Re-activate Eclipse (4 skull buttons again). Three players go to the metal grates at the bottom of the waterfall slide. The 4th player interacts with the water slide top to ride down. The sliding player hits the 3 on the grates with enough force to free the explorers trapped there.",
+      steps: ["Re-activate Eclipse mode by pressing all 4 skull buttons again.", "3 players navigate to the bottom of the waterfall slide and stand on the metal grates.", "4th player goes to the top of the water slide.", "4th player interacts with the slide top and rides down, hitting the 3 on the grates.", "Confirmation: Explorers say 'the way is clear.' A Golden Rod appears on the side of the temple near the spawn area."],
+      tip: "The 3 grate players need to be spread out on the grates — the rider needs to make contact with all 3 positions.", warning: "Timing the Eclipse window matters. Position everyone before re-triggering Eclipse." },
+    { phase: "ECLIPSE", icon: "⚽", title: "Shrink the Stone Ball and Push it Down the Slide", color: "#ff6b00",
+      location: "Water slide mud room entrance (from spawn side). The stone ball is on the cliff edge above.",
+      locationDetail: "Go to the mud room side from spawn, toward the water slide entrance. Look up at the cliff edge above — a grey stone ball sits there. Shoot it down, shrink it with the Shrink Ray, melee/push it into the water slide entrance, then jump in after it. It rolls down and lands on a water shooter at the bottom — stand on the shooter and fly up into the outside temple area.",
+      steps: ["Navigate to the water slide entrance from the mud room side (from spawn).", "Look up at the cliff edge above — shoot the grey stone ball down to the ground.", "Use the Shrink Ray to shrink the stone ball to a small size.", "Melee or push the shrunken ball into the water slide entrance.", "Jump in after it — the ball rolls down and lands on the circular water shooter at the bottom.", "Stand on the water shooter yourself and it launches you up into the outside temple area.", "Confirmation: short dialogue plays, eclipse fades to daylight. A second Golden Rod appears."],
+      tip: "Shrink the ball completely before trying to push it — a full-size ball won't fit.", warning: null },
+    { phase: "ECLIPSE", icon: "⛽", title: "Turn the Gas Valve and Light Gas Pipes with Napalm Zombie", color: "#ff6b00",
+      location: "Eclipse mode required. Mine tunnel below the temple — valve wheel and gas pipes.",
+      locationDetail: "Re-trigger Eclipse. In the mine tunnel (minecart side from spawn), find the valve wheel tight against the tunnel wall near a shaft hole in the ceiling. Turn the valve multiple times until the explorers say 'the walls are moving.' Then lure a Napalm zombie through the tunnel — its body automatically ignites nearby gas leaks. There are 4 gas pipes total (2 in the tunnel, 2 in the perk room area).",
+      steps: ["Re-trigger Eclipse (4 skull buttons simultaneously).", "Navigate to the mine tunnel on the minecart side from spawn.", "Find the valve wheel on the tunnel wall near a ceiling shaft — turn it several times until explorers say 'the walls are moving.'", "Now lure a Napalm zombie (large flaming zombie boss type) into the mine tunnel. Walk it through both the tunnel area and the perk room to ignite all 4 gas pipes.", "After all 4 gas pipes are lit, return to the valve wheel and pull the lever next to it.", "Confirmation: audio dialogue from the explorers."],
+      tip: "The Napalm zombie is naturally attracted to players — lead it slowly through the tunnel areas to light all pipes. Don't kill it early.", warning: "NEVER let the Napalm zombie die near you — its death explosion is massive. Once the gas pipes are lit, lure it far away before killing it." },
+    { phase: "ECLIPSE", icon: "💥", title: "Plug Waterfall Holes with Trip Mines", color: "#aaccff",
+      location: "Eclipse mode required. Mine tunnels near the waterfall — 4 circular holes in the brick tunnel wall.",
+      locationDetail: "After the gas step, the explorers are trapped in the waterfall area. You must divert water by plugging 4 holes in the brick tunnel wall. Buy trip mines from the nearby wall buy. Place them at the 4 spots opposite the circular holes (look for flame torches on the walls as markers). Lure zombies into the trip mines — the explosions plug the holes. Then press the button at the bottom of the waterfall.",
+      steps: ["Buy trip mines from the wall buy in the mine tunnel area.", "Locate 4 circular holes in the brick tunnel wall near the waterfall area — flame torches mark the spots opposite each hole.", "Place trip mines at the 4 spots across from the holes. Lure zombies into the mines — explosions plug the holes.", "After all 4 holes are plugged, press the button at the bottom of the waterfall to double water flow.", "Confirmation: teleporter sound."],
+      tip: "Lure crawlers (not full zombies) into the trip mines for more control. You only need the explosion to count, not a full kill.", warning: null },
+    { phase: "ECLIPSE", icon: "✊", title: "Melee 12 Wall Symbols", color: "#ff00aa",
+      location: "Eclipse mode required. Wall symbols appear around the map after freeing the explorers.",
+      locationDetail: "After freeing the explorers from the waterfall, stone symbols appear on walls around the map (not floor slabs — these are on the walls). Find and melee all 12. Approximate locations: 5 in or near spawn, 2 on the mud room side, 2 on the minecart side, 3 further down below the temple.",
+      steps: ["Re-trigger Eclipse mode.", "Stone symbols appear on walls around the map — they glow faintly.", "Melee each wall symbol (knife it) to activate it. Check spawn area (5), mud room side (2), minecart side (2), and below temple (3).", "All 12 must be hit during the same Eclipse window.", "Confirmation: audio dialogue after the 12th."],
+      tip: "Do a full loop of the map — this is circular, so running one direction covers all areas. Scout during a regular round first.", warning: "These are on the WALLS, not the floor slabs from the earlier step. Don't confuse them." },
+    { phase: "COMPLETION", icon: "💣", title: "Explode the Wooden Trap and Set the Dials", color: "#ffd600",
+      location: "Wooden trap: outside the hut on the minecart side. Dials: mud room area — 4 large golden rotating dials.",
+      locationDetail: "Two steps here: First, find the outside hut on the minecart side and throw a grenade at the wooden trap to the left of the hut (outside the map boundary). Explode it. Second, in Eclipse mode, find the 4 large golden rotating dials in the mud room. Set the numbers 16, 1, 3, 4 to the top of each respective dial.",
+      steps: ["Navigate to the outside hut on the minecart side of the map.", "Throw a grenade or explosive at the wooden trap to the LEFT of the hut, outside the map boundary. Destroy it.", "Re-trigger Eclipse mode.", "Navigate to the mud room — find the 4 large golden rotating dials.", "Set the dials to the following numbers at the top: 16 / 1 / 3 / 4.", "This brings the total Golden Rod count to 6 visible in the spawn area."],
+      tip: "The dial numbers correspond to Roman numeral math (C=10, I=5, dot=1). Set 16, 1, 3, 4 to the top of each dial in order.", warning: null },
+    { phase: "COMPLETION", icon: "🔔", title: "Hit 4 Correct Gongs and Shrink the Orbs", color: "#ffd600",
+      location: "Eclipse mode required. 8 gongs scattered around the map — only 4 play a continuous tone.",
+      locationDetail: "8 gongs are scattered around the map. 4 of them play a continuous tone when hit — the other 4 are wrong and turn the orbs red (resetting the attempt). Find and hit the 4 correct gongs in sequence. While the 4th correct gong is still ringing, use the upgraded Shrink Ray (Fractalizer) to shoot the orbs on top of all 6 Golden Rods. Then shoot a free-floating orb to deflect light at the meteor and shrink it. Dynamite drops into your inventory.",
+      steps: ["Enter Eclipse mode. Begin hitting gongs around the map — listen for which ones play a CONTINUOUS tone.", "Wrong gong: orbs turn red, attempt resets. Correct gong: continuous tone persists.", "Hit all 4 correct gongs in sequence.", "While the 4th correct gong is still ringing, use the upgraded Shrink Ray (Fractalizer) to shoot the orbs on top of all 6 Golden Rods.", "Shoot the free-floating orb in the temple area to deflect light at the meteor — the meteor shrinks.", "Dynamite drops into your inventory."],
+      tip: "A video guide is strongly recommended for the gong locations — their positions around the circular map are hard to describe in text. The continuous tone is very distinct once you hear it.", warning: "Wrong gong resets the sequence completely. If orbs turn red, you need to start the gong sequence again." },
+    { phase: "COMPLETION", icon: "✅", title: "Free Explorers with Dynamite and Claim the Focusing Stone", color: "#00ff88",
+      location: "Top of the temple stairs (where explorers were trapped). PaP must be reactivated first.",
+      locationDetail: "Re-activate PaP by standing on the 4 pressure plates again. The PaP machine may have disappeared — reactivating it is required. Then go to the top of the stairs leading to the large temple. Stand by the wall and listen to Brock and Gary's dialogue. Give them the dynamite — they explode the wall in the past, and in the present that wall is now destroyed. Claim the Focusing Stone from inside.",
+      steps: ["Re-activate Pack-a-Punch by having all 4 players stand on the 4 pressure plates again.", "Head to the top of the stairs leading to the large temple.", "Stand by the wall and wait for Brock and Gary's dialogue to play.", "Give them the dynamite — they blow up the wall. The wall is now destroyed in the present.", "Re-activate PaP again if needed and head to the top of the temple stairs.", "Enter the room where the explorers were trapped — the shrunk meteor (Focusing Stone) spins inside.", "Pick up the Focusing Stone.", "Reward: the player who picks it up receives ALL 7 perks and keeps them permanently for the rest of the game. All 4 players unlock the achievement."],
+      tip: "The Focusing Stone earned here is also required as a PREREQUISITE for completing the Moon Easter Egg (Big Bang Theory). Make sure to carry it when loading into Moon.", warning: null },
   ],
   weapons: [
     { name: "31-79 JGb215 (Shrink Ray)", type: "MYSTERY BOX", icon: "🔫", color: "#ff6b00",
@@ -345,66 +375,84 @@ const SHANGRILA_DATA = {
     { id: "box1", x: 65, y: 35, label: "BOX SPAWN", color: "#888", type: "box", desc: "Possible box location in upper temple area." },
   ],
   mapEdges: [["spawn","tunnels"],["tunnels","temple"],["temple","waterfall"],["waterfall","eclipse_switch"],["temple","switch_l"],["temple","switch_r"],["temple","jugg"],["temple","phd"],["waterfall","doubletap"],["tunnels","power"],["temple","speed"]],
-  mapPhoto: "https://static.wikia.nocookie.net/callofduty/images/Shangri-La_map_layout.png",
-  mapOrientation: { north: "PHD Flopper / Upper Temple (top)", south: "Spawn (bottom)", east: "Speed Cola / Eclipse Switch East (right)", west: "Waterfall / Eclipse Trigger (left)" },
+  mapPhoto: "https://static.accelerated-ideas.com/news/images/shangri_la_ee_zombie_chronicles.jpg",
+  mapOrientation: { north: "PHD Flopper / Upper Temple (top)", south: "Spawn (bottom)", east: "Speed Cola / Mine Tunnel (right)", west: "Waterfall / Mud Room (left)" },
   tips: [
-    { icon: "🗣️", title: "Communication is Everything", body: "Shangri-La requires real-time coordination. Use voice chat. For every simultaneous step use a verbal countdown: 3-2-1-press." },
-    { icon: "🌑", title: "Short Eclipse Window", body: "Once triggered the eclipse lasts about 30 seconds. Know exactly where you are going BEFORE triggering. Scout locations beforehand." },
-    { icon: "🔥", title: "Napalm Zombie Priority", body: "When Napalm spawns, call it out to your partner. One player handles it while the other maintains crowd control. Never let it wander into a horde." },
-    { icon: "🎯", title: "Shrink Ray Stomp Farming", body: "In early rounds use Shrink Ray on zombies and stomp them. Each stomp gives 130 pts. Great for building points toward the Mystery Box." },
-    { icon: "📦", title: "Box Priority", body: "Hunt in order: Shrink Ray first, Matryoshka Dolls second. Do not burn all money on box before getting Juggernog." },
-    { icon: "🔄", title: "Failed Eclipse?", body: "Just trigger it again next round. Unlimited retries. Stay calm, reset, confirm both players are in position before next trigger." },
+    { icon: "👥", title: "4 Players — No Exceptions", body: "Eclipse mode requires 4 simultaneous button presses and multiple steps need players at different positions. This EE is fundamentally impossible with fewer than 4 players. No workarounds exist." },
+    { icon: "🔫", title: "Upgrade the Shrink Ray Early", body: "Pack-a-Punch the Shrink Ray into the Fractalizer before the late EE steps. The upgraded version is REQUIRED to shrink the meteor orbs in the final gong step. Don't leave this until last minute." },
+    { icon: "🗣️", title: "Communication Is the Whole Game", body: "Every step requires coordination. Assign roles before starting: who calls symbols, who rides the water slide, who monitors the Napalm zombie. Use voice chat — text chat is too slow." },
+    { icon: "🔥", title: "Napalm Zombie Handling", body: "The Napalm zombie is your friend for the gas pipe step — lead it through the tunnel slowly. But its death explosion is enormous. Once pipes are lit, lure it far away before killing it. Never let it die near your team." },
+    { icon: "🔔", title: "Gong Step — Use a Video", body: "The 4 correct gongs out of 8 are best found with a video guide. The continuous tone is distinct, but their positions around the circular map are hard to navigate by text alone. A 3-minute video clip will save 20+ minutes of confusion." },
+    { icon: "🏆", title: "The Reward Is Worth It", body: "The player who picks up the Focusing Stone gets ALL 7 perks permanently for the rest of the game (even through downs). This is one of the strongest rewards in any Zombies EE. The stone is also required for the Moon full EE." },
   ],
 };
 
 // ═══ MOON DATA ═══
 const MOON_DATA = {
   overview: {
-    summary: "Starting on Earth (Groom Lake facility) and transitioning to the Moon surface. Acquire the Hacker device, complete hacking sequences, obtain the Focusing Stone, and complete Richtofen's soul transfer to the MPD on the lunar surface.",
+    summary: "Moon spans two locations — Area 51 on Earth and Griffin Station on the lunar surface. The solo Easter Egg 'Cryogenic Slumber Party' involves a color-matching terminal puzzle, a timed lab hack, dislodging the Vril Sphere from two locations, and filling a soul tube at the MPD pyramid. The FULL 'Big Bang Theory' ending REQUIRES 4 players AND that your party bring the Vril Device (earned by completing the Call of the Dead EE) and the Focusing Stone (earned by completing the Shangri-La EE) into the session. Without these items, the final steps cannot be completed.",
     phases: [
-      { label: "SETUP", desc: "Get Hacker from Receiving Bay. Activate power on both Earth and Moon sides. Get Wave Gun." },
-      { label: "HACK", desc: "Use the Hacker on terminals and panels across both Earth and Moon sides." },
-      { label: "FOCUSING STONE", desc: "Complete the hacking sequence to access the Focusing Stone near the MPD." },
-      { label: "MPD RITUAL", desc: "Complete the final soul transfer sequence at the MPD pyramid on the Moon." },
+      { label: "PREREQUISITES", desc: "Vril Device from Call of the Dead EE + Focusing Stone from Shangri-La EE must be in your party's inventory when loading Moon." },
+      { label: "SAMANTHA SAYS", desc: "Complete a color-terminal Simon Says sequence using 4 color-coded screens outside Tunnel 6. Then do the Lab Hack — find the Hacker device and hack 4 panels within 60 seconds." },
+      { label: "VRIL SPHERE", desc: "Wait for Excavator Pi to breach Tunnel 6, knife the Vril Sphere, shoot it off the satellite dish with the Wave Gun, then off the Tunnel 11 ceiling." },
+      { label: "FILL SOUL TUBE (SOLO)", desc: "Kill 25 zombies right next to the MPD soul tube, then pull the MPD switch. Earns 'Cryogenic Slumber Party.' All players get a Death Machine." },
+      { label: "BIG BANG (4 PLAYERS)", desc: "Supercharge the Vril Device, fill all 4 MPD soul tubes, complete Samantha Says 3 more times, and throw the final Gersch Device to destroy Earth." },
     ],
     mustHave: [
-      "Hacker device — fixed spawn in Receiving Bay, required for EVERY EE step",
-      "Wave Gun / QED — wonder weapon from Mystery Box, essential for Moon survival",
-      "Juggernog — Earth-side labs area near the corridors",
-      "Monitor excavator warnings — hack panels immediately to prevent perk loss",
+      "Vril Device (Golden Rod) — REQUIRED for full EE: earned by completing the Call of the Dead Easter Egg, must be carried in a player's inventory when loading Moon",
+      "Focusing Stone — REQUIRED for full EE: earned by completing the Shangri-La Easter Egg",
+      "Hacker device — found in the Lab, needed for the lab hack sequence",
+      "Wave Gun — Mystery Box wonder weapon, REQUIRED to shoot the Vril Sphere off the satellite dish and the ceiling",
+      "4 players for Big Bang Theory — Steps 1-5 (Cryogenic Slumber Party) are solo-able; Steps 6-9 REQUIRE 4 players",
+      "Monitor Excavator warnings — hack the matching excavator panel immediately if one activates or you will lose perk machines",
     ],
   },
   steps: [
-    { phase: "SETUP", icon: "⚡", title: "Activate Power on Both Sides", color: "#00ff88",
-      location: "Earth side: lab corridor. Moon side: excavation control building.",
-      locationDetail: "Moon has two areas: Earth side (Groom Lake underground facility) and Moon surface via teleporter. Earth side power switch is in the lab corridor near the teleporter room. Moon side power is in the excavation control building.",
-      steps: ["From spawn (Receiving Bay), push into the labs and find the Earth-side power switch in the corridor.", "Activate it. Buy Juggernog in the labs immediately after.", "Use the teleporter to reach the Moon surface.", "On the Moon, navigate to the excavation control building and activate lunar power switch."],
-      tip: "On the Moon surface movement has lower gravity. Get used to it before combat.", warning: "Cosmonaut zombie spawns on Moon side around round 8. It steals perks — kill it immediately on sight." },
-    { phase: "SETUP", icon: "🔧", title: "Find the Hacker Device", color: "#00e5ff",
-      location: "Receiving Bay — Earth side, one of 3 fixed spots: desk, shelf, or floor near equipment",
-      locationDetail: "The Hacker is a small electronic device in the Receiving Bay. It spawns in one of 3 fixed spots: on the main desk along the windowed wall, on a shelf along the right side, or on the ground near equipment crates at the back.",
-      steps: ["Stay in Receiving Bay first round and check all 3 spawn locations.", "Spawn 1: Main desk/counter along the wall with windows.", "Spawn 2: Shelf or rack along the right side of the bay.", "Spawn 3: Ground near equipment crates at the back.", "Hold Square/X to pick it up."],
-      tip: "Pick it up first round before enemies crowd the area.", warning: "Cannot do the Easter egg without the Hacker. Find it before starting EE steps." },
-    { phase: "SETUP", icon: "🔫", title: "Get the Wave Gun / QED", color: "#ffd600",
-      location: "Mystery Box — follow the blue beam on either side of the map",
-      locationDetail: "The Wave Gun fires a continuous electrical beam that rapidly ages and kills zombies. Box spawns on both Earth and Moon sides.",
-      steps: ["Hunt the Mystery Box for the Wave Gun — fires a continuous beam.", "The Wave Gun can be split into two Zap Guns by Pack-a-Punching it.", "Secure Wave Gun for survivability on Moon surface."],
-      tip: "Wave Gun is exceptionally strong on the Moon where zombie movement is slower.", warning: null },
-    { phase: "EASTER EGG", icon: "💻", title: "Hack the Computer Panels", color: "#ff00aa",
-      location: "Lab terminals on Earth side. Excavation control panels on Moon side.",
-      locationDetail: "With Hacker equipped, hold Square on specific terminals in a set sequence. Earth-side terminals in the lab corridors. Moon-side panels in the excavation control building.",
-      steps: ["Equip the Hacker device. Hold Square on terminals and panels to hack.", "Hack the data terminals in the Earth-side lab/computer room area.", "Teleport to the Moon side and hack the control panels in the excavation building.", "A specific sequence on the Moon panels must be hacked in order — listen for audio cues.", "Watch for Excavator warnings — hack excavator panels immediately if triggered."],
-      tip: "Keep one player on zombie duty while the Hacker player works. Hacking animation leaves you vulnerable.", warning: "Excavators can deactivate perk machines. When a red Excavator warning appears, rush and hack the matching panel immediately." },
-    { phase: "EASTER EGG", icon: "💎", title: "Acquire the Focusing Stone", color: "#ffd600",
-      location: "Moon surface — near the MPD pyramid area, accessible after hacking sequence",
-      locationDetail: "After all required panels are hacked, the Focusing Stone becomes accessible on the Moon surface near the MPD area. It glows visibly.",
-      steps: ["After completing the hacking sequence, teleport to the Moon surface.", "Navigate to the MPD area — the large black pyramid structure at the far end.", "The Focusing Stone glows near the MPD. Hold Square/X to collect.", "Audio cue from Richtofen confirms acquisition."],
-      tip: "Manage your ammo before this — the MPD area is exposed and open to zombie attacks.", warning: null },
-    { phase: "COMPLETION", icon: "✅", title: "Complete the MPD Ritual", color: "#00ff88",
-      location: "The MPD — large black pyramid at the far end of the Moon surface (NORTH)",
-      locationDetail: "The MPD is the most visually distinct object on the Moon — a large black pyramid at the far end. With the Focusing Stone, interact with the MPD to initiate the final ritual.",
-      steps: ["With Focusing Stone, go to the MPD pyramid on the Moon surface.", "Interact with the MPD as prompted — Richtofen will speak throughout.", "Complete the final button sequence at the MPD.", "Richtofen's soul transfers into the MPD — cutscene triggers. Cryogenic Slumber Party complete."],
-      tip: "Stock ammo and make sure Juggernog is active before initiating the final MPD interaction.", warning: "Kill the Cosmonaut before starting the final ritual. It will disrupt the sequence if active." },
+    { phase: "SETUP", icon: "⚡", title: "Activate Power and Secure Weapons", color: "#00ff88",
+      location: "Power switch: main cave across from the MPD pyramid. Wave Gun: Mystery Box on either side of the map.",
+      locationDetail: "From the Receiving Bay, open doors toward Tunnel 6 and the main cave area. The power switch is directly across from the MPD pyramid in the main cave. After power is on, buy Juggernog in the Lab corridors. Hunt the Mystery Box for the Wave Gun — a continuous electrical beam gun that is REQUIRED for an EE step later.",
+      steps: ["Open doors from the Receiving Bay toward the main cave area and Lab.", "Activate the power switch in the main cave across from the MPD pyramid.", "Buy Juggernog immediately — it's in the Lab corridor area.", "Hunt the Mystery Box for the Wave Gun. It fires a continuous electrical beam and ages/kills zombies instantly.", "Also look for the Hacker device — a small electronic tool found in one of 4 spots in the Lab."],
+      tip: "The Wave Gun is not just helpful — it is REQUIRED for EE Step 4 (shooting the Vril Sphere off the satellite dish). Keep it all game.", warning: "Cosmonaut zombie spawns on Moon surface around round 8. When it grabs you it teleports you and steals a perk. Kill it on sight every time." },
+    { phase: "EASTER EGG", icon: "🖥️", title: "Samantha Says — Color Terminal Sequence", color: "#ff00aa",
+      location: "Outside the Receiving Bay, in front of Tunnel 6's door — 4 color-coded computer terminals in a row",
+      locationDetail: "Four terminals are lined up near a cliff edge, each a different color: Red, Green, Blue, Yellow (left to right). Interact with any to start a color-matching Simon Says. A sequence of colors lights up — input the matching colors by pressing the corresponding terminals. Sequences increase in length up to 5 colors.",
+      steps: ["Navigate to the 4 color terminals outside the Receiving Bay, near Tunnel 6's door.", "Interact with any terminal to begin. The screens show a color sequence.", "Match the sequence by pressing the correct terminals in order.", "Sequences get longer each round — start with 1 color, build to 5.", "Success: all 4 screens flash green simultaneously. You'll hear: 'Integrity check complete. Main systems online.'"],
+      tip: "Call out colors verbally with your team. The sequences aren't too long but moving quickly is important.", warning: "Wrong input resets that round's sequence. Stay calm and go deliberately." },
+    { phase: "EASTER EGG", icon: "💻", title: "Lab Hacking — 60 Second Window", color: "#00e5ff",
+      location: "The Lab — multi-floor laboratory accessible from Griffin Station",
+      locationDetail: "Find the Hacker device in one of 4 spots in the Lab. Then go to the second floor, hack one button on the wall — this starts a 60-second timer. Four panels with green lights appear around the Lab. Hack all 4 panels, then press the 4 lit-up panels on the second floor — all within the 60-second window.",
+      steps: ["Find the Hacker device in the Lab — check the desk, shelves, and floor in different rooms.", "Go to the second floor. Hack the button on the wall to start the 60-second timer.", "Four panels with green lights appear around the Lab. Hack each one (hold Square/X while Hacker equipped).", "Return to the second floor and press all 4 lit-up panels before time runs out.", "Audio cue confirms success. If 60 seconds elapse, restart from the second-floor button."],
+      tip: "Scout the 4 panel locations before starting the timer so you know exactly where to go.", warning: "This is genuinely time-pressured — 60 seconds total, each hack takes 5-10 seconds. Pre-planning your route is essential." },
+    { phase: "EASTER EGG", icon: "🔮", title: "The Vril Sphere — Knife, Shoot, Dislodge", color: "#ffd600",
+      location: "Step starts in Tunnel 6, then tracks the sphere to the satellite dish above the Receiving Area, then to Tunnel 11",
+      locationDetail: "This step starts with a random event — you must WAIT for the PA system to announce 'Excavator Pi is drilling' and let Tunnel 6 be breached. Once decompressed, use the Hacker on Tunnel 6's terminal to move the excavator away. Knife the Vril Sphere (glowing orb) in Tunnel 6 to start it bouncing. Follow it to the satellite dish, shoot it off with the Wave Gun, follow it to Tunnel 11 ceiling, shoot it again. It settles at the MPD pedestal.",
+      steps: ["Wait for the PA announcement: 'Excavator Pi is drilling.' Let Tunnel 6 fully breach — do NOT hack it away yet.", "After breach, use the Hacker on the Tunnel 6 terminal to move the excavator.", "Enter Tunnel 6 and knife the Vril Sphere — the small glowing orb. It starts bouncing around the map.", "Follow the sphere. It eventually flies outside to the top of the satellite dish above the Receiving Area.", "Use the Wave Gun (or Zap Gun dual-wield) to shoot the sphere off the satellite dish.", "The sphere bounces to Tunnel 11 ceiling, above a barrier near Stamin-Up. Shoot it again to dislodge.", "The sphere settles at the MPD pedestal in the main cave. A soul tube rises from a corner of the MPD base."],
+      tip: "Keep the Wave Gun all game for this step — it's the only reliable way to shoot the sphere off the satellite dish.", warning: "This step depends on Excavator Pi activating randomly. If Pi doesn't come up in normal rotation, you may need to wait. Do NOT let a different excavator breach and destroy your perk machines." },
+    { phase: "EASTER EGG", icon: "💀", title: "Fill the Soul Tube — Cryogenic Slumber Party", color: "#aaccff",
+      location: "In front of the MPD pyramid — the cylindrical tube that rose from its base",
+      locationDetail: "After the Vril Sphere settles at the MPD pedestal, a cylindrical soul tube rises from one of the pyramid's floor corners. Kill 25 zombies in very close proximity to this tube. The range is short — zombie souls only count if they die nearly on top of the tube. When full, interact with the switch on the side of the MPD.",
+      steps: ["After the Vril Sphere settles, locate the soul tube rising from a corner of the MPD base.", "Kill 25 zombies extremely close to the tube — the blue soul orbs fly into it as confirmation.", "Killing zombies too far away will not count. Stay near the tube.", "When the tube is full, interact with the switch on the side of the MPD.", "All players receive a 90-second Death Machine. Achievement: Cryogenic Slumber Party unlocked.", "⚠️ STOP HERE if you do not have the Vril Device and Focusing Stone, or do not have 4 players. Steps 6-9 are a separate harder completion."],
+      tip: "The Kill zone for the tube is very small. Stand right next to the tube and draw zombies directly toward you.", warning: null },
+    { phase: "BIG BANG (4 PLAYERS)", icon: "⚗️", title: "Supercharge the Vril Device", color: "#9b00ff",
+      location: "Area 51 (Earth side), Lab (third floor), and Receiving Area terminal",
+      locationDetail: "REQUIRES 4 players AND Vril Device + Focusing Stone from prior EEs. Go to Area 51 (starting room). Two hexagonal panels are on a high shelf — cook a grenade and knock them down without rolling away. Throw a Gersch Device at the panels to teleport them onto the teleporter pad. Back in Griffin Station, a second player throws a QED at the panels — they teleport to a terminal in the Receiving Area. Find the silver tube in the Lab, take it to the terminal, and insert the Vril Device (with Focusing Stone) while pressing use until the screen turns green.",
+      steps: ["Go to Area 51. Two hexagonal panels are high on a shelf — cook and throw a grenade to knock them down.", "Throw a Gersch Device at the fallen panels to teleport them onto the teleporter pad.", "Back at Griffin Station, have a second player throw a QED at the panels — they teleport to a Receiving Area terminal.", "Find the silver tube in the Lab (top of the stairs to 3rd floor or a corner).", "Take the silver tube to the Receiving Area terminal and insert it.", "As the player with the Vril Device, insert it into the machine. Press use repeatedly — screen will flash red then turn green.", "Pick up the Supercharged Vril Device."],
+      tip: "Coordinate the grenade and QED throws — have positions assigned before starting. Use voice comms.", warning: "If you do not have the Vril Device from Call of the Dead and the Focusing Stone from Shangri-La, this step is impossible." },
+    { phase: "BIG BANG (4 PLAYERS)", icon: "🏛️", title: "Fill 4 Soul Tubes and Insert Vril Device", color: "#9b00ff",
+      location: "The MPD pyramid — all 4 corner tubes",
+      locationDetail: "Walk toward the MPD. All 4 soul tubes rise from the corners of the MPD base. Kill zombies near each tube to fill all 4. Then place the Supercharged Vril Device into its slot on the MPD.",
+      steps: ["Approach the MPD — all 4 soul tubes rise simultaneously.", "Kill zombies in close proximity to each tube to fill all 4.", "With all 4 tubes full, place the Supercharged Vril Device into its slot on the MPD side.", "Richtofen and Samantha swap bodies — Richtofen gains control of the zombies.", "All living players instantly receive all 8 perks simultaneously."],
+      tip: "Split players up to fill multiple tubes at once — standing near one tube at a time is too slow.", warning: null },
+    { phase: "BIG BANG (4 PLAYERS)", icon: "🖥️", title: "Samantha Says — Three More Times", color: "#ff00aa",
+      location: "The Samantha Says color terminals outside Tunnel 6",
+      locationDetail: "Throw a QED at the Vril Sphere on the ground. It teleports outside to the Samantha Says terminals. Play the full color-matching sequence 3 complete times — all-green confirmation counts as 1 completion.",
+      steps: ["Throw a QED at the Vril Sphere on the ground near the MPD.", "The sphere teleports to the color terminals outside Tunnel 6.", "Play Samantha Says 3 complete times — each time match all color sequences until all 4 screens go green.", "After 3 completions, 3 rockets rise from the canyon outside Griffin Station."],
+      tip: "Same as Step 2 — assign one person to call out the colors and everyone else confirms.", warning: null },
+    { phase: "BIG BANG (4 PLAYERS)", icon: "💥", title: "Big Bang Theory — End It All", color: "#00ff88",
+      location: "Near the Vril Sphere on the ground",
+      locationDetail: "Throw one final Gersch Device at the Vril Sphere where it rests on the ground. The Gersch Device's black hole engulfs the sphere and Earth explodes. The Big Bang Theory achievement unlocks.",
+      steps: ["Throw one final Gersch Device directly at the Vril Sphere on the ground.", "The black hole engulfs it. Earth explodes in a spectacular ending sequence.", "Achievement 'Big Bang Theory' unlocked for all players."],
+      tip: "Make sure everyone sees this — it's one of the most epic endings in Zombies history.", warning: null },
   ],
   weapons: [
     { name: "Hacker Device", type: "FIXED SPAWN", icon: "💻", color: "#00e5ff",
@@ -454,7 +502,7 @@ const MOON_DATA = {
     { id: "box2", x: 62, y: 18, label: "BOX SPAWN", color: "#888", type: "box", desc: "Possible box — Moon surface near teleporter arrival." },
   ],
   mapEdges: [["receiving","labs"],["labs","teleporter"],["teleporter","moon"],["moon","mpd"],["moon","excavation"],["labs","jugg"],["labs","speed"],["labs","power_e"],["moon","phd"],["moon","stamin"],["excavation","power_m"]],
-  mapPhoto: "https://static.wikia.nocookie.net/callofduty/images/Moon_map_layout.png",
+  mapPhoto: "https://static.accelerated-ideas.com/news/images/der_eisendrache_teleporter_ee.jpg",
   mapOrientation: { north: "MPD Pyramid / Moon Far End (top)", south: "Receiving Bay / Earth Spawn (bottom)", east: "Stamin-Up / Moon East (right)", west: "Excavation Control / Moon West (left)" },
   tips: [
     { icon: "👨‍🚀", title: "Cosmonaut Priority", body: "The moment you see the Cosmonaut, drop everything and kill it. Wave Gun is highly effective against it." },
@@ -917,11 +965,11 @@ function ThreatDots({ level }) {
 }
 
 // ═══ SESSION LOBBY ═══
-function SessionLobby({ onSession, onSolo, mapsConfig }) {
-  const [mode, setMode] = useState(null);
+function SessionLobby({ onSession, onSolo, mapsConfig, initialCode = '' }) {
+  const [mode, setMode] = useState(initialCode ? 'join' : null);
   const [sessionName, setSessionName] = useState('');
   const [selectedMap, setSelectedMap] = useState('');
-  const [joinCode, setJoinCode] = useState('');
+  const [joinCode, setJoinCode] = useState(initialCode);
   const [userName, setUserName] = useState(() => localStorage.getItem('zee_name') || '');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -1024,10 +1072,18 @@ function SessionLobby({ onSession, onSolo, mapsConfig }) {
 // ═══ SESSION HEADER BAR ═══
 function SessionHeaderBar({ session, participants, mapName, mapColor, onBack }) {
   const [copied, setCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   function copyCode() {
     navigator.clipboard.writeText(session.code).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    });
+  }
+  function shareLink() {
+    const url = `${window.location.origin}${window.location.pathname}?join=${session.code}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2500);
     });
   }
   if (!session || session === 'solo') return (
@@ -1040,11 +1096,16 @@ function SessionHeaderBar({ session, participants, mapName, mapColor, onBack }) 
       <button onClick={onBack} style={{ background:'none', border:'none', color:'#5a6280', cursor:'pointer', fontFamily:"'Courier New',monospace", fontSize:'12px', letterSpacing:'1px' }}>← MAPS</button>
       <div style={{ textAlign:'center', flex:1, padding:'0 16px' }}>
         <div style={{ fontSize:'13px', color:'#e0e0e0', letterSpacing:'1px', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{session.name}</div>
-        <button onClick={copyCode} style={{ background:'none', border:'none', cursor:'pointer', fontFamily:"'Courier New',monospace", padding:0 }}>
-          <span style={{ fontSize:'11px', color: copied ? '#00ff88' : '#4a5580', letterSpacing:'3px' }}>
-            {copied ? '✓ COPIED!' : `[${session.code}] 📋`}
-          </span>
-        </button>
+        <div style={{ display:'flex', alignItems:'center', gap:8, justifyContent:'center' }}>
+          <button onClick={copyCode} style={{ background:'none', border:'none', cursor:'pointer', fontFamily:"'Courier New',monospace", padding:0 }}>
+            <span style={{ fontSize:'11px', color: copied ? '#00ff88' : '#4a5580', letterSpacing:'3px' }}>
+              {copied ? '✓ COPIED!' : `[${session.code}] 📋`}
+            </span>
+          </button>
+          <button onClick={shareLink} style={{ background: linkCopied ? '#00ff8822' : 'transparent', border:`1px solid ${linkCopied ? '#00ff88' : '#1e2235'}`, borderRadius:4, cursor:'pointer', fontFamily:"'Courier New',monospace", padding:'2px 8px', fontSize:'9px', letterSpacing:'1px', color: linkCopied ? '#00ff88' : '#4a5580' }}>
+            {linkCopied ? '✓ LINK COPIED' : '🔗 SHARE'}
+          </button>
+        </div>
       </div>
       <div style={{ display:'flex', gap:'6px', alignItems:'center' }}>
         {participants.map((p, i) => (
@@ -1766,12 +1827,17 @@ export default function App() {
   const [session, setSession] = useState(null);
   const [activeMap, setActiveMap] = useState(null);
 
+  // Read ?join=CODE from URL on first load — auto-fills join screen
+  const urlCode = new URLSearchParams(window.location.search).get('join') || '';
+
   function handleSession(s) {
     setSession(s);
+    // Clear the join code from URL once joined
+    if (window.history.replaceState) window.history.replaceState({}, '', window.location.pathname);
     if (s !== 'solo' && s.mapId) setActiveMap(s.mapId);
   }
 
-  if (!session) return <SessionLobby onSession={handleSession} onSolo={() => setSession('solo')} mapsConfig={MAPS_CONFIG} />;
+  if (!session) return <SessionLobby onSession={handleSession} onSolo={() => setSession('solo')} mapsConfig={MAPS_CONFIG} initialCode={urlCode} />;
 
   const isSolo = session === 'solo';
   const sessionId = isSolo ? null : session.id;
