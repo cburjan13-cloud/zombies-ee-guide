@@ -21,6 +21,17 @@ const C = {
   purple: "#9b00ff", text: "#e0e6f0", muted: "#5a6280", subtle: "#1a1f35",
 };
 
+// Reactive window-width hook — re-renders on resize
+function useWindowWidth() {
+  const [w, setW] = useState(window.innerWidth);
+  useEffect(() => {
+    const handler = () => setW(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return w;
+}
+
 const MAPS_CONFIG = [
   { id: "shadows", name: "SHADOWS OF EVIL", subtitle: "Morg City · BO3 Base Game", eeName: "Apocalypse Averted", difficulty: 8, players: "1-4 (Solo viable)", time: "2-3 hours", color: "#9b00ff", icon: "👁️", tag: "COMPLEX", tagline: "A 1940s noir city crawling with evil. Complete four character rituals, obtain the Apothicon Sword, and trap the Shadow Man before the apocalypse begins." },
   { id: "ascension", name: "ASCENSION", subtitle: "Soviet Space Facility · Zombies Chronicles", eeName: "Casimir Mechanism", difficulty: 5, players: "4 Players REQUIRED", time: "1.5-2.5 hours", color: "#00e5ff", icon: "🚀", tag: "4 PLAYERS REQUIRED", tagline: "Activate 5 nodes across the map — including a clock puzzle, a monkey-round button press, and powering the Casimir Mechanism with every upgraded wonder weapon at once." },
@@ -1217,7 +1228,7 @@ function WhatsNextCard({ steps, completions, mapColor }) {
 // ═══ OVERVIEW TAB ═══
 function OverviewTab({ data, meta, completions = [], session }) {
   const showWhatsNext = session && session !== 'solo';
-  const isMobile = window.innerWidth < 600;
+  const isMobile = useWindowWidth() < 600;
   return (
     <div style={{ padding: isMobile ? "16px" : "32px 40px", maxWidth: 1100, margin: "0 auto" }}>
       {showWhatsNext && <WhatsNextCard steps={data.steps} completions={completions} mapColor={meta.color} />}
@@ -1267,6 +1278,7 @@ function OverviewTab({ data, meta, completions = [], session }) {
 
 // ═══ STEPS TAB ═══
 function StepsTab({ data, meta, session, myName, myColor, completions = [], onToggle }) {
+  const windowWidth = useWindowWidth();
   const [current, setCurrent] = useState(0);
   const [localCompleted, setLocalCompleted] = useState(new Set());
   const isSolo = !session || session === 'solo';
@@ -1283,8 +1295,8 @@ function StepsTab({ data, meta, session, myName, myColor, completions = [], onTo
     }
   }
 
-  const isMobile = window.innerWidth < 700;
-  const [showSidebar, setShowSidebar] = useState(!isMobile);
+  const isMobile = windowWidth < 700;
+  const [showSidebar, setShowSidebar] = useState(() => window.innerWidth >= 700);
 
   return (
     <div style={{ display: "flex", height: "100%", overflow: "hidden", flexDirection: "column" }}>
@@ -1380,6 +1392,7 @@ function MapTab({ data, meta }) {
   const [selected, setSelected] = useState(null);
   const [filter, setFilter] = useState("all");
   const [view, setView] = useState("diagram"); // "diagram" | "photo"
+  const isMobile = useWindowWidth() < 700;
   const node = selected ? data.mapNodes.find(n => n.id === selected) : null;
   const TI = { area:"🏛", key:"🎯", lander:"🚀", perk:"💊", box:"📦" };
   const TL = { area:"AREA", key:"KEY LOCATION", lander:"LANDER", perk:"PERK", box:"BOX (MOVES)" };
@@ -1387,7 +1400,7 @@ function MapTab({ data, meta }) {
   const orient = data.mapOrientation || {};
 
   return (
-    <div style={{ padding: "28px 40px", maxWidth: 1100, margin: "0 auto" }}>
+    <div style={{ padding: isMobile ? "16px" : "28px 40px", maxWidth: 1100, margin: "0 auto" }}>
       <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom: 16, flexWrap:"wrap", gap:12 }}>
         <div>
           <h2 style={{ margin: "0 0 4px", fontSize: 22, color: "#fff" }}>{meta.name} — Map Reference</h2>
@@ -1424,7 +1437,7 @@ function MapTab({ data, meta }) {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 18 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 320px", gap: 18 }}>
         <div style={{ background: "#0c0f1a", border: "1px solid #1e2235", borderRadius: 12, padding: 18, minHeight:360 }}>
           {view === "photo" ? (
             <div style={{ position:"relative" }}>
@@ -1510,7 +1523,7 @@ function MapTab({ data, meta }) {
         </div>
 
         {/* Detail panel */}
-        <div style={{ maxHeight: 520, overflowY: "auto" }}>
+        <div style={{ maxHeight: isMobile ? "none" : 520, overflowY: isMobile ? "visible" : "auto" }}>
           {node ? (
             <div style={{ background:"#0c0f1a", border:`1px solid ${node.color}44`, borderTop:`3px solid ${node.color}`, borderRadius:10, padding:"18px 20px" }}>
               <div style={{ fontSize:8, letterSpacing:3, color:node.color, marginBottom:6 }}>{TI[node.type]} {TL[node.type]}</div>
@@ -1559,11 +1572,12 @@ function MapTab({ data, meta }) {
 // ═══ WEAPONS TAB ═══
 function WeaponsTab({ data, meta }) {
   const [sel, setSel] = useState(0);
+  const isMobile = useWindowWidth() < 700;
   const w = data.weapons[sel];
   return (
-    <div style={{ padding:"28px 40px", maxWidth:1100, margin:"0 auto" }}>
+    <div style={{ padding: isMobile ? "16px" : "28px 40px", maxWidth:1100, margin:"0 auto" }}>
       <h2 style={{ margin:"0 0 20px", fontSize:22, color:"#fff" }}>Weapons and Wonder Weapons</h2>
-      <div style={{ display:"grid", gridTemplateColumns:"280px 1fr", gap:20 }}>
+      <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "280px 1fr", gap:20 }}>
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
           {data.weapons.map((w,i) => (
             <div key={i} onClick={() => setSel(i)} style={{ padding:"14px 16px", borderRadius:10, cursor:"pointer", background:i===sel?"#1a1f35":"transparent", border:`1px solid ${i===sel?w.color+"66":"#1e2235"}`, borderLeft:`3px solid ${i===sel?w.color:"transparent"}` }}>
@@ -1623,11 +1637,12 @@ function WeaponsTab({ data, meta }) {
 // ═══ ENEMIES TAB ═══
 function EnemiesTab({ data, meta }) {
   const [sel, setSel] = useState(0);
+  const isMobile = useWindowWidth() < 700;
   const e = data.enemies[sel];
   return (
-    <div style={{ padding:"28px 40px", maxWidth:1100, margin:"0 auto" }}>
+    <div style={{ padding: isMobile ? "16px" : "28px 40px", maxWidth:1100, margin:"0 auto" }}>
       <h2 style={{ margin:"0 0 20px", fontSize:22, color:"#fff" }}>Special Enemies</h2>
-      <div style={{ display:"grid", gridTemplateColumns:"280px 1fr", gap:20 }}>
+      <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "280px 1fr", gap:20 }}>
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
           {data.enemies.map((en,i) => (
             <div key={i} onClick={() => setSel(i)} style={{ padding:"14px 16px", borderRadius:10, cursor:"pointer", background:i===sel?"#1a1f35":"transparent", border:`1px solid ${i===sel?en.color+"66":"#1e2235"}`, borderLeft:`3px solid ${i===sel?en.color:"transparent"}` }}>
@@ -1652,7 +1667,7 @@ function EnemiesTab({ data, meta }) {
               </div>
             </div>
             <p style={{ margin:"14px 0", fontSize:13, color:"#b0bcd0", lineHeight:1.8 }}>{e.description}</p>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:14 }}>
+            <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:12, marginBottom:14 }}>
               <div style={{ background:"#1a1f35", border:"1px solid #1e2235", borderRadius:8, padding:"12px 14px" }}>
                 <div style={{ fontSize:9, letterSpacing:3, color:"#5a6280", marginBottom:8 }}>HOW TO IDENTIFY</div>
                 <div style={{ fontSize:12, color:"#e0e6f0", lineHeight:1.7 }}>{e.identify}</div>
@@ -1674,10 +1689,11 @@ function EnemiesTab({ data, meta }) {
 
 // ═══ TIPS TAB ═══
 function TipsTab({ data }) {
+  const isMobile = useWindowWidth() < 700;
   return (
-    <div style={{ padding:"28px 40px", maxWidth:1100, margin:"0 auto" }}>
+    <div style={{ padding: isMobile ? "16px" : "28px 40px", maxWidth:1100, margin:"0 auto" }}>
       <h2 style={{ margin:"0 0 20px", fontSize:22, color:"#fff" }}>Pro Tips and Mechanics</h2>
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:14 }}>
+      <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2,1fr)", gap:14 }}>
         {data.tips.map((tip,i) => (
           <div key={i} style={{ background:"#0c0f1a", border:"1px solid #1e2235", borderRadius:10, padding:"20px 22px" }}>
             <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
@@ -1694,10 +1710,11 @@ function TipsTab({ data }) {
 
 // ═══ SHIELD TAB ═══
 function ShieldTab({ data, meta }) {
+  const isMobile = useWindowWidth() < 700;
   const s = data.shield;
   if (!s) return null;
   return (
-    <div style={{ padding:"28px 40px", maxWidth:900, margin:"0 auto" }}>
+    <div style={{ padding: isMobile ? "16px" : "28px 40px", maxWidth:900, margin:"0 auto" }}>
       <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:24 }}>
         <span style={{ fontSize:32 }}>🛡️</span>
         <div>
@@ -1759,6 +1776,7 @@ function ShieldTab({ data, meta }) {
 
 function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
   const [tab, setTab] = useState(0);
+  const isMobile = useWindowWidth() < 600;
   const meta = MAPS_CONFIG.find(m => m.id === mapId);
   const data = ALL_MAP_DATA[mapId];
   const isSolo = !session || session === 'solo';
@@ -1785,18 +1803,18 @@ function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
       {!isSolo ? (
         <SessionHeaderBar session={session} participants={participants} mapName={meta.name} mapColor={meta.color} onBack={onBack} />
       ) : (
-        <div style={{ height:50, display:"flex", alignItems:"center", background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding:"0 28px", flexShrink:0 }}>
-          <button onClick={onBack} style={{ background:"transparent", border:"none", color:"#5a6280", cursor:"pointer", fontSize:11, letterSpacing:2, marginRight:20, padding:"0 14px 0 0", borderRight:"1px solid #1e2235", fontFamily:"inherit", height:50 }}>← MAPS</button>
+        <div style={{ height:50, display:"flex", alignItems:"center", background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding: isMobile ? "0 12px" : "0 28px", flexShrink:0 }}>
+          <button onClick={onBack} style={{ background:"transparent", border:"none", color:"#5a6280", cursor:"pointer", fontSize:11, letterSpacing:2, marginRight: isMobile ? 10 : 20, padding:"0 14px 0 0", borderRight:"1px solid #1e2235", fontFamily:"inherit", height:50 }}>← MAPS</button>
           <span style={{ fontSize:15, marginRight:8 }}>{meta.icon}</span>
-          <span style={{ fontSize:11, color:meta.color, letterSpacing:2 }}>{meta.name}</span>
+          <span style={{ fontSize: isMobile ? 10 : 11, color:meta.color, letterSpacing:2 }}>{meta.name}</span>
         </div>
       )}
 
       {/* Tab nav */}
-      <div style={{ display:"flex", alignItems:"center", background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding:"0 28px", overflowX:"auto", flexShrink:0 }}>
-        {!isSolo && <><span style={{ fontSize:13, marginRight:8 }}>{meta.icon}</span><span style={{ fontSize:10, color:meta.color, letterSpacing:2, marginRight:16, whiteSpace:"nowrap" }}>{meta.name}</span></>}
+      <div style={{ display:"flex", alignItems:"center", background:"#0c0f1a", borderBottom:"1px solid #1e2235", padding: isMobile ? "0 4px" : "0 28px", overflowX:"auto", flexShrink:0, scrollbarWidth:"none" }}>
+        {!isSolo && !isMobile && <><span style={{ fontSize:13, marginRight:8 }}>{meta.icon}</span><span style={{ fontSize:10, color:meta.color, letterSpacing:2, marginRight:16, whiteSpace:"nowrap" }}>{meta.name}</span></>}
         {MAP_TABS.map((label,i) => (
-          <button key={i} onClick={() => setTab(i)} style={{ padding:"0 16px", height:44, background:"transparent", border:"none", borderBottom:tab===i?`2px solid ${meta.color}`:"2px solid transparent", color:tab===i?meta.color:label==="SHIELD"?"#ffd60088":"#5a6280", fontSize:10, letterSpacing:2, cursor:"pointer", fontFamily:"inherit", flexShrink:0, whiteSpace:"nowrap" }}>{label==="SHIELD"?"🛡️ SHIELD":label}</button>
+          <button key={i} onClick={() => setTab(i)} style={{ padding: isMobile ? "0 10px" : "0 16px", height:44, background:"transparent", border:"none", borderBottom:tab===i?`2px solid ${meta.color}`:"2px solid transparent", color:tab===i?meta.color:label==="SHIELD"?"#ffd60088":"#5a6280", fontSize: isMobile ? 9 : 10, letterSpacing: isMobile ? 1 : 2, cursor:"pointer", fontFamily:"inherit", flexShrink:0, whiteSpace:"nowrap" }}>{label==="SHIELD"?"🛡️ SHIELD":label}</button>
         ))}
       </div>
 
@@ -1813,7 +1831,7 @@ function MapGuide({ mapId, onBack, session, sessionId, myName, myColor }) {
 
 // ═══ HOME SCREEN ═══
 function HomeScreen({ onSelect }) {
-  const isMobile = window.innerWidth < 600;
+  const isMobile = useWindowWidth() < 600;
   return (
     <div style={{ width:"100vw", minHeight:"100vh", background:"#060810", fontFamily:"'Courier New',monospace", color:"#e0e6f0" }}>
       <div style={{ padding: isMobile ? "20px 16px 16px" : "36px 40px 24px", borderBottom:"1px solid #1e2235", background:"#0c0f1a" }}>
