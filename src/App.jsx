@@ -1012,9 +1012,10 @@ function SessionLobby({ onSession, onSolo, mapsConfig, initialCode = '' }) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const bg = { minHeight:'100vh', background:'#060810', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:"'Courier New',monospace", color:'#e0e6f0', padding:'20px' };
-  const card = { background:'#0c0f1a', border:'1px solid #1a2040', borderRadius:4, padding:'32px', width:'100%', maxWidth:'460px' };
-  const btn = (primary) => ({ width:'100%', padding:'14px', background:primary?'#00e5ff':'transparent', color:primary?'#060810':'#00e5ff', border:'1px solid #00e5ff', borderRadius:2, fontFamily:"'Courier New',monospace", fontSize:'13px', letterSpacing:'2px', cursor:'pointer', marginBottom:'12px', fontWeight:primary?'bold':'normal' });
+  const isMobile = useWindowWidth() < 600;
+  const bg = { minHeight:'100vh', background:'#060810', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:"'Courier New',monospace", color:'#e0e6f0', padding: isMobile ? '16px' : '20px', overflowY:'auto' };
+  const card = { background:'#0c0f1a', border:'1px solid #1a2040', borderRadius:4, padding: isMobile ? '20px 16px' : '32px', width:'100%', maxWidth:'460px' };
+  const btn = (primary) => ({ width:'100%', padding: isMobile ? '12px' : '14px', background:primary?'#00e5ff':'transparent', color:primary?'#060810':'#00e5ff', border:'1px solid #00e5ff', borderRadius:2, fontFamily:"'Courier New',monospace", fontSize: isMobile ? '12px' : '13px', letterSpacing:'2px', cursor:'pointer', marginBottom:'10px', fontWeight:primary?'bold':'normal' });
   const inp = { width:'100%', background:'#060810', border:'1px solid #1a2040', borderRadius:2, color:'#e0e6f0', fontFamily:"'Courier New',monospace", fontSize:'14px', padding:'10px 12px', marginBottom:'12px', boxSizing:'border-box', outline:'none' };
   const lbl = { display:'block', fontSize:'10px', letterSpacing:'2px', color:'#4a5580', marginBottom:'6px', textTransform:'uppercase' };
   const backBtn = { background:'none', border:'none', color:'#4a5580', cursor:'pointer', fontFamily:"'Courier New',monospace", fontSize:'12px', padding:'0 12px 0 0' };
@@ -1058,11 +1059,23 @@ function SessionLobby({ onSession, onSolo, mapsConfig, initialCode = '' }) {
   if (!mode) return (
     <div style={bg}>
       <div style={card}>
-        <div style={{ fontSize:'10px', letterSpacing:'5px', color:'#4a5580', marginBottom:'8px' }}>CALL OF DUTY: BLACK OPS 3</div>
-        <div style={{ fontSize:'24px', color:'#00e5ff', marginBottom:'32px', letterSpacing:'2px' }}>ZOMBIES EE GUIDE</div>
+        <div style={{ fontSize:'10px', letterSpacing:'5px', color:'#4a5580', marginBottom:'6px' }}>CALL OF DUTY: BLACK OPS 3</div>
+        <div style={{ fontSize: isMobile ? '20px' : '24px', color:'#00e5ff', marginBottom:'16px', letterSpacing:'2px' }}>☣️ ZOMBIES EE GUIDE</div>
+
+        {/* Site description */}
+        <div style={{ background:'#060810', border:'1px solid #1a2040', borderRadius:4, padding:'14px', marginBottom:'24px' }}>
+          <p style={{ margin:'0 0 8px', fontSize:'12px', color:'#8896b0', lineHeight:1.7 }}>
+            Step-by-step Easter Egg guides for 6 Black Ops 3 Zombies maps — covering every EE step, elemental weapon builds, shield parts, enemies, perk locations, and pro tips.
+          </p>
+          <p style={{ margin:0, fontSize:'11px', color:'#4a5580', lineHeight:1.6 }}>
+            Play solo or start a live session to track progress with your squad in real time. Share your session code and everyone sees steps checked off as they happen.
+          </p>
+        </div>
+
         <button style={btn(true)} onClick={() => setMode('create')}>+ CREATE SESSION</button>
         <button style={btn(false)} onClick={() => setMode('join')}>⌗ JOIN SESSION</button>
-        <button style={{ ...btn(false), color:'#4a5580', borderColor:'#1a2040', marginBottom:0 }} onClick={onSolo}>SOLO (NO SESSION)</button>
+        <div style={{ height:'1px', background:'#1a2040', margin:'4px 0 14px' }} />
+        <button style={{ ...btn(false), color:'#4a5580', borderColor:'#1a2040', marginBottom:0 }} onClick={onSolo}>SOLO — NO SESSION</button>
       </div>
     </div>
   );
